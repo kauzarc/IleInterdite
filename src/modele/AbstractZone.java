@@ -2,12 +2,16 @@ package modele;
 
 
 public abstract class AbstractZone {
-    private WaterState waterState;
-    private int x;
-    private int y;
-
+    protected WaterState waterState;
+    protected int x;
+    protected int y;
 
     public String toString(){
         return "#";
     }
+
+    public Boolean canReceiveWater() {
+        return !(this.waterState == WaterState.submerged);
+    }
+
 }

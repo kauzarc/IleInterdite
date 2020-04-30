@@ -1,5 +1,6 @@
 package modele;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Board {
@@ -17,15 +18,33 @@ public class Board {
         }
     }
 
-    @Override
-    public String toString(){
-        String toReturn = new String();
-        for (int y = 0; y < sizeY; y+=1){
-            for (int x = 0; x < sizeX; x +=1){
+    public void fillBoard(){
+        for (ArrayList<AbstractZone> column : this.zones){
+            for (AbstractZone zone : column){
                 
             }
         }
     }
+
+    @Override
+    public String toString(){
+        String toReturn = new String();
+        for (int y = 0; y < sizeY; y+=1){
+            toReturn += "|";
+            for (int x = 0; x < sizeX; x +=1){
+                AbstractZone zone = this.zones.get(x).get(y);
+                if (zone == null){
+                    toReturn += "_";
+                }else{
+                    toReturn += zone;
+                }
+                toReturn += "|";
+            }
+            toReturn+= "\n";
+        }
+        return toReturn;
+    }
+
 
 
 }

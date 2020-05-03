@@ -14,4 +14,7 @@ public abstract class AbstractZone {
         return !(this.waterState == WaterState.submerged);
     }
 
+    public WaterState getWaterState() {
+        return waterState;
+    }
 }

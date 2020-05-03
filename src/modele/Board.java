@@ -4,8 +4,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Board {
-    public int sizeX;
-    public int sizeY;
+    private int sizeX;
+    private int sizeY;
 
     private ArrayList< ArrayList<AbstractZone> > zones;
 
@@ -13,38 +13,50 @@ public class Board {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.zones = new ArrayList<ArrayList<AbstractZone>>(sizeX);
-        for (ArrayList<AbstractZone> column : this.zones){
-            column =  new ArrayList<>(sizeY);
-        }
+        fillBoard();
+    }
+
+    public int getSizeX() {
+        return sizeX;
+    }
+
+    public int getSizeY(){
+        return sizeY;
     }
 
     public void fillBoard(){
-        for (ArrayList<AbstractZone> column : this.zones){
-            for (AbstractZone zone : column){
-                
+        for (int x=0; x<sizeX; x +=1){
+            ArrayList<AbstractZone> column = new ArrayList<>(sizeY);
+            for (int y = 0; y < sizeY; y+=1){
+                column.add( new NormalZone(x,y));
             }
+            this.zones.add(column);
         }
     }
 
+    public AbstractZone getAt(int x, int y) throws IndexOutOfBoundsException{
+        if (x < 0 || x >= sizeX || y < 0 || y >= sizeY){
+            throw new IndexOutOfBoundsException("Wrong x or y index at access for this board :"+this);
+        }
+        return zones.get(x).get(y);
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         String toReturn = new String();
-        for (int y = 0; y < sizeY; y+=1){
+        for (int y = 0; y < sizeY; y += 1) {
             toReturn += "|";
-            for (int x = 0; x < sizeX; x +=1){
+            for (int x = 0; x < sizeX; x += 1) {
                 AbstractZone zone = this.zones.get(x).get(y);
-                if (zone == null){
+                if (zone == null) {
                     toReturn += "_";
-                }else{
+                } else {
                     toReturn += zone;
                 }
                 toReturn += "|";
             }
-            toReturn+= "\n";
+            toReturn += "\n";
         }
         return toReturn;
     }
-
-
-
 }

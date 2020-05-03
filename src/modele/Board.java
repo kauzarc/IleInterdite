@@ -1,9 +1,10 @@
 package modele;
 
-import java.lang.reflect.Array;
+import ObserverObservable.Observable;
+
 import java.util.ArrayList;
 
-public class Board {
+public class Board extends Observable {
     private int sizeX;
     private int sizeY;
 

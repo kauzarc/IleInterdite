@@ -60,4 +60,6 @@ public class BoardTest extends TestCase {
                         "|"+nz00+"|\n"+
                         "|"+nz00+"|\n");
     }
+
+
 }

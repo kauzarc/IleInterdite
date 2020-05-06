@@ -20,7 +20,7 @@ public class ViewDirector {
         this.grid = new Grid(board);
 
         //had button and its action
-        Button endTurnButton = endTurnButton("fin de tour", 250, 250);
+        Button endTurnButton = endTurnButton("fin de tour", 250, 250, board);
 
         //add node root and its children
         Pane root = new Pane();
@@ -35,9 +35,9 @@ public class ViewDirector {
     }
 
 
-    public Button endTurnButton (String name, int x, int y){
+    public Button endTurnButton (String name, int x, int y, Board board){
         Button button = new Button(name);
-        button.setOnAction(new EndTurnHandler());
+        button.setOnAction(new EndTurnHandler(board));
         button.setLayoutX(x);
         button.setLayoutY(y);
         return button;

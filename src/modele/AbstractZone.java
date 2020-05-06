@@ -17,4 +17,17 @@ public abstract class AbstractZone {
     public WaterState getWaterState() {
         return waterState;
     }
+
+    public void fillWitchWater (){
+        switch(this.waterState){
+            case normal:
+                this.waterState = WaterState.flooded;
+                break;
+            case flooded:
+                this.waterState = WaterState.submerged;
+                break;
+            default:
+                System.out.println("Ne peut pas être plus remplie");
+        }
+    }
 }

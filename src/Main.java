@@ -9,5 +9,6 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Board b = new Board(10, 10);
         ViewDirector viewDirector = new ViewDirector(stage, b);
+        //test
     }
 }

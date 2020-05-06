@@ -45,6 +45,7 @@ public class Board extends Observable {
         return zones.get(x).get(y);
     }
 
+    //faut faire des tests
     public void randomFilling (int number){
         ArrayList<AbstractZone> fillable = new ArrayList<AbstractZone>();
         for(int y = 0; y < this.sizeY; y += 1){
@@ -55,12 +56,16 @@ public class Board extends Observable {
                 }
             }
         }
-        while(number > 0 && number < fillable.size()){
+        if (number >= fillable.size()){
+            number = fillable.size();
+        }
+        while(number > 0){
             int randomNum = ThreadLocalRandom.current().nextInt(0, fillable.size());
             fillable.get(randomNum).fillWitchWater();
             fillable.remove(randomNum);
             number -= 1;
         }
+        notifyObservers();
     }
 
     @Override

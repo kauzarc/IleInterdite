@@ -11,10 +11,9 @@ public class EndTurnHandler implements EventHandler<ActionEvent> {
          super();
          this.board = board;
      }
+     //faire des test
     @Override
     public void handle(ActionEvent actionEvent) {
         board.randomFilling(3);
-        board.notifyObservers();
-
     }
 }

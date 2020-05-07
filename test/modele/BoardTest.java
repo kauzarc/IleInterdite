@@ -62,37 +62,34 @@ public class BoardTest extends TestCase {
                         "|"+nz00+"|\n");
     }
 
+
+    @Test
+    public void testHowManyZone (){
+        int numberOfNormalZone = b4_4.howManyZone(WaterState.normal);
+        assertEquals(numberOfNormalZone,16);
+    }
+
+    public void testHowManyZone2 (){
+        b10_1.getAt(0,0).fillWitchWater();
+        b10_1.getAt(0,0).fillWitchWater();
+        b10_1.getAt(1,0).fillWitchWater();
+        assertEquals(b10_1.howManyZone(WaterState.normal), 8);
+        assertEquals(b10_1.howManyZone(WaterState.flooded), 1);
+        assertEquals(b10_1.howManyZone(WaterState.submerged), 1);
+    }
+
     @Test
     public void testRandomFilling (){
         b4_4.randomFilling(3);
-        int filledZone = 0;
-        for (int x = 0; x < b4_4.getSizeX(); x += 1) {
-            for (int y = 0; y < b4_4.getSizeY(); y += 1) {
-                if (b4_4.getAt(x, y).getWaterState() == WaterState.flooded){
-                    filledZone += 1;
-                }
-            }
-        }
-        assertEquals(filledZone, 3);
+        assertEquals(b4_4.howManyZone(WaterState.flooded), 3);
     }
 
     public  void testRandomFilling2 (){
         b1_1.randomFilling(3);
-        int filledZone = 0;
-        int emptyZone = 0;
-        for (int x = 0; x < b1_1.getSizeX(); x += 1) {
-            for (int y = 0; y < b1_1.getSizeY(); y += 1) {
-                if (b1_1.getAt(x, y).getWaterState() == WaterState.normal){
-                    emptyZone += 1;
-                }
-                else{
-                    filledZone += 1;
-                }
-            }
-        }
-        assertEquals(filledZone, 1);
-        assertEquals(emptyZone, 0);
+        assertEquals(b1_1.howManyZone(WaterState.flooded), 1);
+        assertEquals(b1_1.howManyZone(WaterState.normal), 0);
     }
+
 
 
 }

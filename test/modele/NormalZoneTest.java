@@ -3,6 +3,7 @@ package modele;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import junit.framework.TestCase;
 
 public class NormalZoneTest {
     NormalZone zone;
@@ -28,13 +29,14 @@ public class NormalZoneTest {
     public void testFillWithWater (){
         zone = new NormalZone(0, 0);
         zone.fillWitchWater();
-        Assert.assertTrue(zone.getWaterState() == WaterState.flooded);
+        Assert.assertEquals(zone.getWaterState(), WaterState.flooded);
     }
 
+    //je sais pas
     public void testFillWithWater2 (){
         zone = new NormalZone(0,0);
         zone.fillWitchWater();
         zone.fillWitchWater();
-        Assert.assertTrue(zone.getWaterState() == WaterState.submerged);
+        Assert.assertEquals(zone.getWaterState(), WaterState.submerged);
     }
 }

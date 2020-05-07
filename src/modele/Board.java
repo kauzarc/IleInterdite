@@ -27,6 +27,19 @@ public class Board extends Observable {
         return sizeY;
     }
 
+    public int howManyZone(WaterState mod){
+        int numberOfzone = 0;
+        for(int y = 0; y < this.sizeY; y += 1) {
+            for (int x = 0; x < this.sizeX; x += 1) {
+                AbstractZone actualZone = this.zones.get(x).get(y);
+                if (actualZone.getWaterState() == mod){
+                    numberOfzone ++;
+                }
+            }
+        }
+        return numberOfzone;
+    }
+
 
     public void fillBoard(){
         for (int x=0; x<sizeX; x +=1){
@@ -45,7 +58,6 @@ public class Board extends Observable {
         return zones.get(x).get(y);
     }
 
-    //faut faire des tests
     public void randomFilling (int number){
         ArrayList<AbstractZone> fillable = new ArrayList<AbstractZone>();
         for(int y = 0; y < this.sizeY; y += 1){

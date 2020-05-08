@@ -70,9 +70,9 @@ public class BoardTest extends TestCase {
     }
 
     public void testHowManyZone2 (){
-        b10_1.getAt(0,0).fillWitchWater();
-        b10_1.getAt(0,0).fillWitchWater();
-        b10_1.getAt(1,0).fillWitchWater();
+        b10_1.getAt(0,0).fillWithWater();
+        b10_1.getAt(0,0).fillWithWater();
+        b10_1.getAt(1,0).fillWithWater();
         assertEquals(b10_1.howManyZone(WaterState.normal), 8);
         assertEquals(b10_1.howManyZone(WaterState.flooded), 1);
         assertEquals(b10_1.howManyZone(WaterState.submerged), 1);

@@ -73,7 +73,7 @@ public class Board extends Observable {
         }
         while(number > 0){
             int randomNum = ThreadLocalRandom.current().nextInt(0, fillable.size());
-            fillable.get(randomNum).fillWitchWater();
+            fillable.get(randomNum).fillWithWater();
             fillable.remove(randomNum);
             number -= 1;
         }

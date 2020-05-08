@@ -18,7 +18,7 @@ public abstract class AbstractZone {
         return waterState;
     }
 
-    public void fillWitchWater (){
+    public void fillWithWater (){
         switch(this.waterState){
             case normal:
                 this.waterState = WaterState.flooded;

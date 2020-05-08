@@ -28,15 +28,15 @@ public class NormalZoneTest {
     @Test
     public void testFillWithWater (){
         zone = new NormalZone(0, 0);
-        zone.fillWitchWater();
+        zone.fillWithWater();
         Assert.assertEquals(zone.getWaterState(), WaterState.flooded);
     }
 
     //je sais pas
     public void testFillWithWater2 (){
         zone = new NormalZone(0,0);
-        zone.fillWitchWater();
-        zone.fillWitchWater();
+        zone.fillWithWater();
+        zone.fillWithWater();
         Assert.assertEquals(zone.getWaterState(), WaterState.submerged);
     }
 }

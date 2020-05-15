@@ -1,7 +1,9 @@
 package modele;
 
 
-public abstract class AbstractZone {
+import ObserverObservable.Observable;
+
+public abstract class AbstractZone extends Observable {
     protected WaterState waterState;
     protected final int x;
     protected final int y;
@@ -9,6 +11,14 @@ public abstract class AbstractZone {
     protected AbstractZone(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
     }
 
     public String toString(){
@@ -34,5 +44,6 @@ public abstract class AbstractZone {
             default:
                 System.out.println("Ne peut pas être plus remplie");
         }
+        notifyObservers();
     }
 }

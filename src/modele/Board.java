@@ -27,20 +27,28 @@ public class Board extends Observable {
         return sizeY;
     }
 
+    /**
+     * count the number of zone in the board wich is the same state as mod
+     * @param mod waterstate
+     * @return numberOfZone int
+     */
     public int howManyZone(WaterState mod){
-        int numberOfzone = 0;
+        int numberOfZone = 0;
         for(int y = 0; y < this.sizeY; y += 1) {
             for (int x = 0; x < this.sizeX; x += 1) {
                 AbstractZone actualZone = this.zones.get(x).get(y);
                 if (actualZone.getWaterState() == mod){
-                    numberOfzone ++;
+                    numberOfZone ++;
                 }
             }
         }
-        return numberOfzone;
+        return numberOfZone;
     }
 
 
+    /**
+     * fill the board with NormalZone
+     */
     public void fillBoard(){
         for (int x=0; x<this.sizeX; x +=1){
             ArrayList<AbstractZone> column = new ArrayList<>(sizeY);
@@ -51,6 +59,13 @@ public class Board extends Observable {
         }
     }
 
+    /**
+     * permit to get the zone at the cooordinates X and Y
+     * @param x int
+     * @param y int
+     * @return an AbstractZone
+     * @throws IndexOutOfBoundsException
+     */
     public AbstractZone getAt(int x, int y) throws IndexOutOfBoundsException{
         if (x < 0 || x >= this.sizeX || y < 0 || y >= this.sizeY){
             throw new IndexOutOfBoundsException("Wrong x or y index at access for this board :"+this);
@@ -58,6 +73,10 @@ public class Board extends Observable {
         return zones.get(x).get(y);
     }
 
+    /**
+     * fill a number equal of the number in parametter, of zone in the board
+     * @param number
+     */
     public void randomFilling (int number){
         ArrayList<AbstractZone> fillable = new ArrayList<AbstractZone>();
         for(int y = 0; y < this.sizeY; y += 1){

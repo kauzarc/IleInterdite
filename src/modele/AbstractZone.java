@@ -25,14 +25,22 @@ public abstract class AbstractZone extends Observable {
         return "#";
     }
 
+    /**
+     *
+     * @return Boolean means if the zone can be fill or not
+     */
     public Boolean canReceiveWater() {
         return !(this.waterState == WaterState.submerged);
     }
+
 
     public WaterState getWaterState() {
         return waterState;
     }
 
+    /**
+     * upgrade the level of water of the zone
+     */
     public void fillWithWater (){
         switch(this.waterState){
             case normal:

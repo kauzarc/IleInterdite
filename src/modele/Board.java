@@ -77,7 +77,6 @@ public class Board extends Observable {
             fillable.remove(randomNum);
             number -= 1;
         }
-        notifyObservers();
     }
 
     @Override

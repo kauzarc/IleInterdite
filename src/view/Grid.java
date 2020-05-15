@@ -4,7 +4,9 @@ import ObserverObservable.Observer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import modele.AbstractZone;
 import modele.Board;
+import modele.NormalZone;
 import modele.WaterState;
 
 
@@ -19,26 +21,27 @@ public class Grid extends Canvas implements Observer {
         this.board = board;
         this.board.addObserver(this);
 
-        update();
+        setUp();
     }
 
-    @Override
-    public void update() {
+    public void setUp(){
         GraphicsContext gc = getGraphicsContext2D();
         for (int x = 0; x < board.getSizeX(); x++) {
             for (int y = 0; y < board.getSizeY(); y++) {
-                WaterState waterState = this.board.getAt(x, y).getWaterState();
-                switch (waterState) {
-                    case normal:
-                        gc.setFill(NORMAL);
-                        break;
-                    case submerged:
-                        gc.setFill(SUBMERGED);
-                        break;
-                    case flooded:
-                        gc.setFill(FLOODED);
+                AbstractZone actualZone = this.board.getAt(x,y);
+                if (actualZone instanceof NormalZone){
+                    actualZone.addObserver(new NormalTile((NormalZone) actualZone, SCALE, getGraphicsContext2D()));
                 }
-                gc.fillRect(x * SCALE + 1, y * SCALE + 1, SCALE - 2, SCALE - 2);
+            }
+        }
+    }
+
+    //Ne doit être appelé q'une fois.
+    @Override
+    public void update() {
+        for (int x = 0; x < board.getSizeX(); x++) {
+            for (int y = 0; y < board.getSizeY(); y++) {
+                this.board.getAt(x, y).notifyObservers();
             }
         }
     }

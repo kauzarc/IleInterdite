@@ -19,8 +19,10 @@ public class ViewDirector {
         this.mainWindow = mainWindow;
         this.grid = new Grid(board);
 
+        mainWindow.setHeight(570);
+        mainWindow.setWidth(505);
         //had button and its action
-        Button endTurnButton = endTurnButton("fin de tour", 250, 250, board);
+        Button endTurnButton = endTurnButton("fin de tour", 220, 500, board);
 
         //add node root and its children
         Pane root = new Pane();

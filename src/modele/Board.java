@@ -42,9 +42,9 @@ public class Board extends Observable {
 
 
     public void fillBoard(){
-        for (int x=0; x<sizeX; x +=1){
+        for (int x=0; x<this.sizeX; x +=1){
             ArrayList<AbstractZone> column = new ArrayList<>(sizeY);
-            for (int y = 0; y < sizeY; y+=1){
+            for (int y = 0; y < this.sizeY; y+=1){
                 column.add( new NormalZone(x,y));
             }
             this.zones.add(column);
@@ -52,7 +52,7 @@ public class Board extends Observable {
     }
 
     public AbstractZone getAt(int x, int y) throws IndexOutOfBoundsException{
-        if (x < 0 || x >= sizeX || y < 0 || y >= sizeY){
+        if (x < 0 || x >= this.sizeX || y < 0 || y >= this.sizeY){
             throw new IndexOutOfBoundsException("Wrong x or y index at access for this board :"+this);
         }
         return zones.get(x).get(y);
@@ -83,9 +83,9 @@ public class Board extends Observable {
     @Override
     public String toString() {
         String toReturn = new String();
-        for (int y = 0; y < sizeY; y += 1) {
+        for (int y = 0; y < this.sizeY; y += 1) {
             toReturn += "|";
-            for (int x = 0; x < sizeX; x += 1) {
+            for (int x = 0; x < this.sizeX; x += 1) {
                 AbstractZone zone = this.zones.get(x).get(y);
                 if (zone == null) {
                     toReturn += "_";

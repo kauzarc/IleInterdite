@@ -37,5 +37,12 @@ public abstract class Character {
         }
     }
 
+    public int getX (){
+        return this.x;
+    }
+    public int getY (){
+        return this.y;
+    }
+
 
 }

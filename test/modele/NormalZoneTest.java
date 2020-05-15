@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import junit.framework.TestCase;
 
-public class NormalZoneTest {
+public class NormalZoneTest extends TestCase{
     NormalZone zone;
 
     @Before
@@ -16,20 +16,20 @@ public class NormalZoneTest {
     @Test
     public void testTestToString() {
         zone = new NormalZone(0, 0);
-        Assert.assertEquals("#", zone.toString());
+        assertEquals("#", zone.toString());
     }
 
     @Test
     public void testCanReceiveWater() {
         zone = new NormalZone(0, 0);
-        Assert.assertTrue(zone.canReceiveWater());
+        assertTrue(zone.canReceiveWater());
     }
 
     @Test
     public void testFillWithWater (){
         zone = new NormalZone(0, 0);
         zone.fillWithWater();
-        Assert.assertEquals(zone.getWaterState(), WaterState.flooded);
+        assertEquals(zone.getWaterState(), WaterState.flooded);
     }
 
     //je sais pas
@@ -37,6 +37,6 @@ public class NormalZoneTest {
         zone = new NormalZone(0,0);
         zone.fillWithWater();
         zone.fillWithWater();
-        Assert.assertEquals(zone.getWaterState(), WaterState.submerged);
+        assertEquals(zone.getWaterState(), WaterState.submerged);
     }
 }

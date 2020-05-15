@@ -36,13 +36,8 @@ public class Grid extends Canvas implements Observer {
         }
     }
 
-    //Ne doit être appelé q'une fois.
     @Override
     public void update() {
-        for (int x = 0; x < board.getSizeX(); x++) {
-            for (int y = 0; y < board.getSizeY(); y++) {
-                this.board.getAt(x, y).notifyObservers();
-            }
-        }
+        
     }
 }

@@ -1,17 +1,17 @@
 package Controller;
 
 public class UserActionState {
-    public enum Mod {
+    public enum Mode {
         moving, drying
     }
 
-    private Mod mod;
+    private Mode mode;
     private int actionCount;
 
     private static final UserActionState instance = new UserActionState();
 
     private UserActionState() {
-        this.mod = Mod.moving;
+        this.mode = Mode.moving;
         this.actionCount = 0;
     }
 
@@ -19,12 +19,12 @@ public class UserActionState {
         return instance;
     }
 
-    public Mod getMod() {
-        return this.mod;
+    public Mode getMod() {
+        return this.mode;
     }
 
-    public void setMod(Mod mod) {
-        this.mod = mod;
+    public void setMod(Mode mod) {
+        this.mode = mod;
     }
 
     public void actionCountUp() {

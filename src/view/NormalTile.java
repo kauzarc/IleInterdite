@@ -4,6 +4,7 @@ import ObserverObservable.Observer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import modele.NormalZone;
 import modele.WaterState;
 
@@ -25,15 +26,17 @@ public class NormalTile extends javafx.scene.shape.Rectangle implements Observer
     }
 
     public void update() {
+
         switch (this.normalZone.getWaterState()) {
             case normal:
-                
-                break;
-            case submerged:
-
+                this.setFill(NORMAL);
                 break;
             case flooded:
-
+                this.setFill(FLOODED);
+                break;
+            case submerged:
+                this.setFill(SUBMERGED);
+                break;
         }
     }
 }

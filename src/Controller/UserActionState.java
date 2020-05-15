@@ -11,8 +11,7 @@ public class UserActionState {
     private static final UserActionState instance = new UserActionState();
 
     private UserActionState() {
-        this.mode = Mode.moving;
-        this.actionCount = 0;
+        reset();
     }
 
     public static UserActionState getInstance() {
@@ -37,5 +36,10 @@ public class UserActionState {
 
     public int getActionCount() {
         return this.actionCount;
+    }
+
+    public void reset() {
+        this.mode = Mode.moving;
+        this.actionCount = 0;
     }
 }

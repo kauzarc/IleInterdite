@@ -2,8 +2,7 @@ package modele;
 
 public class NormalZone extends AbstractZone{
     public NormalZone (int x, int y){
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.waterState = WaterState.normal;
     }
 }

@@ -3,8 +3,13 @@ package modele;
 
 public abstract class AbstractZone {
     protected WaterState waterState;
-    protected int x;
-    protected int y;
+    protected final int x;
+    protected final int y;
+
+    protected AbstractZone(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
     public String toString(){
         return "#";

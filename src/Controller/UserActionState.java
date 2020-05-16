@@ -5,7 +5,7 @@ public class UserActionState {
         moving, drying
     }
 
-    private Mode mode;
+    private Mode mode = Mode.moving;
     private int actionCount;
 
     private static final UserActionState instance = new UserActionState();

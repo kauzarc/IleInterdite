@@ -1,17 +1,12 @@
 package view;
 
-import Controller.DryingModeHandler;
+import Controller.ChangeModeHandler;
 import Controller.EndTurnHandler;
-import Controller.MoveModeHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import modele.Board;
-
-import java.awt.event.ActionEvent;
-import java.beans.EventHandler;
 
 public class ViewDirector {
     private final Stage mainWindow;
@@ -24,16 +19,16 @@ public class ViewDirector {
         mainWindow.setHeight(570);
         mainWindow.setWidth(505);
         //had button and its action
-        Button endTurnButton = endTurnButton("fin de tour", 220, 500, board);
-        Button dryingModeButton = dryingModeButton("drying", 315, 500);
-        Button moveModeButton = moveModeButton("moove", 150, 500);
+        Button endTurnButton = createButton("fin de tour", 220, 500);
+        endTurnButton.setOnAction(new EndTurnHandler(board));
+        Button changeModeButton = createButton("switch on drying mode", 315, 500);
+        changeModeButton.setOnAction(new ChangeModeHandler(changeModeButton));
 
         //add node root and its children
         Pane root = new Pane();
         root.getChildren().add(this.grid);
         root.getChildren().add(endTurnButton);
-        root.getChildren().add(dryingModeButton);
-        root.getChildren().add(moveModeButton);
+        root.getChildren().add(changeModeButton);
 
 
         Scene scene = new Scene(root);
@@ -43,25 +38,8 @@ public class ViewDirector {
     }
 
 
-    public Button endTurnButton (String name, int x, int y, Board board){
+    public Button createButton(String name, int x, int y){
         Button button = new Button(name);
-        button.setOnAction(new EndTurnHandler(board));
-        button.setLayoutX(x);
-        button.setLayoutY(y);
-        return button;
-    }
-
-    public Button dryingModeButton(String name, int x, int y){
-        Button button = new Button(name);
-        button.setOnAction(new DryingModeHandler());
-        button.setLayoutX(x);
-        button.setLayoutY(y);
-        return button;
-    }
-
-    public Button moveModeButton(String name, int x, int y){
-        Button button = new Button(name);
-        button.setOnAction(new MoveModeHandler());
         button.setLayoutX(x);
         button.setLayoutY(y);
         return button;

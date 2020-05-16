@@ -2,13 +2,19 @@ package Controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import modele.AbstractZone;
 import view.AbstractTile;
 
 public class TileClickedHandeler implements EventHandler<MouseEvent> {
+    private final AbstractTile tile;
+
+    public TileClickedHandeler(AbstractTile tile) {
+        this.tile = tile;
+    }
+
     @Override
     public void handle(MouseEvent mouseEvent) {
-        Object o = mouseEvent.getSource();
-        if (o instanceof AbstractTile)
-            System.out.println("yo");
+        AbstractZone zone = tile.getZone();
+        System.out.println("" + zone.getX() + ", " + zone.getY());
     }
 }

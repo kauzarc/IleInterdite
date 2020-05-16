@@ -1,14 +1,12 @@
 package view;
 
+import Controller.TileClickedHandeler;
 import ObserverObservable.Observer;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import modele.AbstractZone;
 import modele.Board;
 import modele.NormalZone;
-import modele.WaterState;
 
 
 public class Grid extends Pane implements Observer {
@@ -28,16 +26,16 @@ public class Grid extends Pane implements Observer {
     public void setUp(){
         for (int x = 0; x < board.getSizeX(); x++) {
             for (int y = 0; y < board.getSizeY(); y++) {
-                AbstractZone actualZone = this.board.getAt(x,y);
-                AbstractTile tile;
+                AbstractZone actualZone = this.board.getAt(x, y);
+                AbstractTile tile = null;
 
-                if (actualZone instanceof NormalZone){
-                    tile = new NormalTile( ((NormalZone) actualZone) , SCALE);
+                if (actualZone instanceof NormalZone) {
+                    tile = new NormalTile(((NormalZone) actualZone), SCALE);
                     this.getChildren().add(tile);
                     actualZone.addObserver(tile);
                 }
 
-                tile.setOnMouseClicked(new);
+                tile.setOnMouseClicked(new TileClickedHandeler(tile));
             }
         }
     }

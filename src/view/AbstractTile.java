@@ -32,4 +32,8 @@ public abstract class AbstractTile extends Rectangle implements Observer {
                 break;
         }
     }
+
+    public AbstractZone getZone() {
+        return this.zone;
+    }
 }

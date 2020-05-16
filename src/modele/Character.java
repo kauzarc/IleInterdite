@@ -1,6 +1,8 @@
 package modele;
 
-public abstract class Character {
+import ObserverObservable.Observable;
+
+public abstract class Character extends Observable {
     protected int x;
     protected int y;
     protected Board map;

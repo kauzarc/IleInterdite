@@ -8,6 +8,7 @@ public abstract class Character extends Observable {
     protected Board map;
 
     public Character(int x,int y, Board map){
+        super();
         this.x = x;
         this.y = y;
         this.map = map;
@@ -37,6 +38,7 @@ public abstract class Character extends Observable {
             default:
                 break;
         }
+        this.notifyObservers();
     }
 
     public int getX (){

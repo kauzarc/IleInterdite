@@ -11,11 +11,14 @@ public class Board extends Observable {
     private int sizeY;
 
     private ArrayList< ArrayList<AbstractZone> > zones;
+    private ArrayList<Character> players;
 
     public Board(int sizeX,int sizeY){
+        super();
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.zones = new ArrayList<ArrayList<AbstractZone>>(sizeX);
+        this.players = new ArrayList<Character>();
         fillBoard();
     }
 
@@ -27,6 +30,9 @@ public class Board extends Observable {
         return sizeY;
     }
 
+    public ArrayList<Character> getPlayers(){
+        return this.players;
+    }
     /**
      * count the number of zone in the board wich is the same state as mod
      * @param mod waterstate
@@ -96,6 +102,10 @@ public class Board extends Observable {
             fillable.remove(randomNum);
             number -= 1;
         }
+    }
+
+    public void addPlayer(Character p1){
+        this.players.add(p1);
     }
 
     @Override

@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Translate;
 import modele.Character;
-import modele.NoramlCaracter;
 
 public class CharacterGraphics extends Rectangle implements Observer {
     private Character character;

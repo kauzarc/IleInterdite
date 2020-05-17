@@ -24,6 +24,7 @@ public class ViewDirector {
         Button changeModeButton = createButton("switch on drying mode", 315, 500);
         changeModeButton.setOnAction(new ChangeModeHandler(changeModeButton));
 
+
         //add node root and its children
         Pane root = new Pane();
         root.getChildren().add(this.grid);

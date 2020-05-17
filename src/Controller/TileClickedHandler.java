@@ -7,7 +7,6 @@ import view.AbstractTile;
 
 public class TileClickedHandler implements EventHandler<MouseEvent> {
     private final AbstractTile tile;
-
     public TileClickedHandler(AbstractTile tile) {
         this.tile = tile;
     }
@@ -18,6 +17,7 @@ public class TileClickedHandler implements EventHandler<MouseEvent> {
         switch (UserActionState.getInstance().getMod()) {
             case moving:
                 System.out.println("Try to move to : " + zone.getX() + ", " + zone.getY());
+
                 break;
 
             case drying:

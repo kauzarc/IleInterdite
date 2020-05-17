@@ -37,7 +37,7 @@ public class Grid extends Pane implements Observer {
                     actualZone.addObserver(tile);
                 }
 
-                tile.setOnMouseClicked(new TileClickedHandler(tile));
+                tile.setOnMouseClicked(new TileClickedHandler(tile,board));
             }
         }
     }

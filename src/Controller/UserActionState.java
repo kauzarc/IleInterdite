@@ -1,5 +1,6 @@
 package Controller;
 
+
 public class UserActionState {
     public enum Mode {
         moving, drying
@@ -41,5 +42,6 @@ public class UserActionState {
     public void reset() {
         this.mode = Mode.moving;
         this.actionCount = 0;
+
     }
 }

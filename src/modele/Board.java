@@ -11,14 +11,16 @@ public class Board extends Observable {
     private int sizeY;
 
     private ArrayList< ArrayList<AbstractZone> > zones;
-    private ArrayList<Character> players;
+    private ArrayList<Player> players;
+    private int nowPlayerIndex;
 
     public Board(int sizeX,int sizeY){
         super();
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.zones = new ArrayList<ArrayList<AbstractZone>>(sizeX);
-        this.players = new ArrayList<Character>();
+        this.players = new ArrayList<Player>();
+        this.nowPlayerIndex = 0;
         fillBoard();
     }
 
@@ -30,7 +32,7 @@ public class Board extends Observable {
         return sizeY;
     }
 
-    public ArrayList<Character> getPlayers(){
+    public ArrayList<Player> getPlayers(){
         return this.players;
     }
     /**
@@ -104,8 +106,12 @@ public class Board extends Observable {
         }
     }
 
-    public void addPlayer(Character p1){
+    public void addPlayer(Player p1){
         this.players.add(p1);
+    }
+
+    public Player getNowPlayer(){
+        return this.players.get(nowPlayerIndex);
     }
 
     @Override

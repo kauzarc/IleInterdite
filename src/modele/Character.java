@@ -18,12 +18,12 @@ public abstract class Character extends Observable {
         switch (D){
             case up:
                 if(this.y < this.map.getSizeY() - 1){
-                    this.y += 1;
+                    this.y -= 1;
                 }
                 break;
             case down:
                 if(this.y > 0) {
-                    this.y -= 1;
+                    this.y += 1;
                 }
                 break;
             case right:

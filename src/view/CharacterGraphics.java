@@ -27,7 +27,10 @@ public class CharacterGraphics extends Rectangle implements Observer {
         int  lateralMove = this.scale * (this.character.getX() - this.previousX);
         int horizontalMove = this.scale * (this.character.getY() - this.previousY);
         Translate translate = new Translate(lateralMove, horizontalMove);
-        this.getTransforms().addAll(translate);
+        this.getTransforms().add(translate);
+        this.previousX = this.character.getX();
+        this.previousY = this.character.getY();
+        System.out.println(translate);
         this.setFill(Color.BLACK);
     }
 }

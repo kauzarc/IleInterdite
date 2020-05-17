@@ -14,7 +14,7 @@ public abstract class Character extends Observable {
         this.map = map;
     }
 
-    public void deplacement(Direction D){
+    public void walk(Direction D){
         switch (D){
             case up:
                 if(this.y < this.map.getSizeY() - 1){

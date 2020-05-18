@@ -1,13 +1,13 @@
 package view;
 
 import controller.TileClickedHandler;
-import observerObservable.Observer;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import modele.AbstractZone;
 import modele.Board;
 import modele.Character;
 import modele.NormalZone;
+import observerObservable.Observer;
 
 
 public class Grid extends Pane implements Observer {
@@ -25,14 +25,14 @@ public class Grid extends Pane implements Observer {
         setUpPlayer();
     }
 
-    public void setUp(){
+    public void setUp() {
         for (int x = 0; x < board.getSizeX(); x++) {
             for (int y = 0; y < this.board.getSizeY(); y++) {
                 AbstractZone actualZone = this.board.getAt(x, y);
                 AbstractTile tile = null;
 
                 if (actualZone instanceof NormalZone) {
-                    tile = new NormalTile(((NormalZone) actualZone), this.SCALE);
+                    tile = new NormalTile(((NormalZone) actualZone), SCALE);
                     this.getChildren().add(tile);
                     actualZone.addObserver(tile);
                 }
@@ -42,15 +42,16 @@ public class Grid extends Pane implements Observer {
         }
     }
 
-    public void setUpPlayer (){
-        for(Character p : this.board.getPlayers()){
-            CharacterGraphics cg = new CharacterGraphics(p,this.SCALE);
+    public void setUpPlayer() {
+        for (Character p : this.board.getGame().getPlayers()) {
+            CharacterGraphics cg = new CharacterGraphics(p, SCALE);
             this.getChildren().add(cg);
+            System.out.println(cg.getX() + " " + cg.getY());
         }
     }
 
     @Override
     public void update() {
-        
+
     }
 }

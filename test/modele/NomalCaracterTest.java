@@ -9,7 +9,8 @@ public class NomalCaracterTest extends TestCase {
 
     Game game = new Game(new Stage(), 5, 5, 1);
     Board b5_5 = game.getBoard();
-    Player p0_0 = new Player(0,0, b5_5);
+    Player p0_0 = new Player(0, 0, b5_5);
+
     @Before
     public void setUp() throws Exception {
         super.setUp();
@@ -26,13 +27,14 @@ public class NomalCaracterTest extends TestCase {
         p0_0.walk(Direction.up);
         p0_0.walk(Direction.down);
         p0_0.walk(Direction.right);
-        assertEquals(p0_0.getY(),-1);
-        assertEquals(p0_0.getX(),1);
+        assertEquals(p0_0.getY(), -1);
+        assertEquals(p0_0.getX(), 1);
     }
-    public void testDeplacement3 () throws Exception {
+
+    public void testDeplacement3() throws Exception {
         p0_0.walk(Direction.left);
         p0_0.walk(Direction.down);
-        assertEquals(p0_0.getX(),0);
-        assertEquals(p0_0.getY(),0);
+        assertEquals(p0_0.getX(), 0);
+        assertEquals(p0_0.getY(), 0);
     }
 }

@@ -1,19 +1,19 @@
 package view;
 
-import observerObservable.Observer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Translate;
 import modele.Character;
+import observerObservable.Observer;
 
 public class CharacterGraphics extends Rectangle implements Observer {
-    private Character character;
-    private int scale;
+    private final Character character;
+    private final int scale;
     private int previousX;
     private int previousY;
 
-    public CharacterGraphics (Character concernedCharacter, int SCALE){
-        super(SCALE * concernedCharacter.getX()+1,SCALE * concernedCharacter.getY()+1,(SCALE/2) -2, (SCALE/2) -2);
+    public CharacterGraphics(Character concernedCharacter, int SCALE) {
+        super(SCALE * concernedCharacter.getX() + 1, SCALE * concernedCharacter.getY() + 1, (SCALE / 2) - 2, (SCALE / 2) - 2);
         concernedCharacter.addObserver(this);
         this.character = concernedCharacter;
         this.scale = SCALE;
@@ -24,7 +24,7 @@ public class CharacterGraphics extends Rectangle implements Observer {
 
     @Override
     public void update() {
-        int  lateralMove = this.scale * (this.character.getX() - this.previousX);
+        int lateralMove = this.scale * (this.character.getX() - this.previousX);
         int horizontalMove = this.scale * (this.character.getY() - this.previousY);
         Translate translate = new Translate(lateralMove, horizontalMove);
         this.getTransforms().add(translate);

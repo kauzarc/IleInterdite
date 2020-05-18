@@ -1,9 +1,9 @@
 package view;
 
-import observerObservable.Observer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import modele.AbstractZone;
+import observerObservable.Observer;
 
 public abstract class AbstractTile extends Rectangle implements Observer {
 
@@ -14,7 +14,7 @@ public abstract class AbstractTile extends Rectangle implements Observer {
     final static Color SUBMERGED = Color.DARKBLUE;
 
     public AbstractTile(AbstractZone actualZone, int SCALE) {
-        super(SCALE * actualZone.getX()+1,SCALE * actualZone.getY()+1,SCALE -2, SCALE -2);
+        super(SCALE * actualZone.getX() + 1, SCALE * actualZone.getY() + 1, SCALE - 2, SCALE - 2);
         this.zone = actualZone;
         update();
     }

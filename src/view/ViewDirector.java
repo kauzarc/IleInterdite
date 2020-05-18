@@ -39,7 +39,7 @@ public class ViewDirector {
     }
 
 
-    public Button createButton(String name, int x, int y){
+    public Button createButton(String name, int x, int y) {
         Button button = new Button(name);
         button.setLayoutX(x);
         button.setLayoutY(y);

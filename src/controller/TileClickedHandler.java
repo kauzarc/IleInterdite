@@ -3,7 +3,6 @@ package controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import modele.AbstractZone;
-import modele.Board;
 import modele.Direction;
 import modele.Game;
 import view.AbstractTile;

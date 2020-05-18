@@ -8,23 +8,23 @@ import java.util.List;
 
 public class Game {
     public enum PlayerActionMode {
-        moving, drying;
+        moving, drying
     }
 
-    private Board board;
-    private List<Player> players;
-    private ViewDirector viewDirector;
+    private final Board board;
+    private final List<Player> players;
+    private final ViewDirector viewDirector;
 
-    private int currentPlayerIndex;
+    private final int currentPlayerIndex;
     private int actionCount;
     private PlayerActionMode actionMode;
 
-    public Game(Stage stage, int sizeX, int sizeY, int nbPlayer){
+    public Game(Stage stage, int sizeX, int sizeY, int nbPlayer) {
         this.board = new Board(this, sizeX, sizeY);
         this.players = new ArrayList<>();
         this.viewDirector = new ViewDirector(this, stage);
 
-        for (int i = 0; i < nbPlayer; i++){
+        for (int i = 0; i < nbPlayer; i++) {
             addPlayer();
         }
 
@@ -33,8 +33,7 @@ public class Game {
         this.actionMode = PlayerActionMode.moving;
     }
 
-    private void addPlayer()
-    {
+    private void addPlayer() {
         int i = this.players.size();
         this.players.add(new Player(i, i, this.board));
     }
@@ -43,11 +42,15 @@ public class Game {
         return this.board;
     }
 
+    public List<Player> getPlayers() {
+        return this.players;
+    }
+
     public Player getCurrentPlayer() {
         return this.players.get(currentPlayerIndex);
     }
 
-    public void upActionCount(){
+    public void upActionCount() {
         this.actionCount++;
     }
 
@@ -55,8 +58,8 @@ public class Game {
         return actionCount;
     }
 
-    public void switchActionMode(){
-        switch (this.actionMode){
+    public void switchActionMode() {
+        switch (this.actionMode) {
             case moving:
                 this.actionMode = PlayerActionMode.drying;
                 break;

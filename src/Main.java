@@ -1,10 +1,6 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import modele.Game;
-import modele.Player;
-import view.ViewDirector;
-import modele.Board;
 
 public class Main extends Application {
     @Override

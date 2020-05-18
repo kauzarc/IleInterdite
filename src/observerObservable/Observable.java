@@ -3,7 +3,7 @@ package observerObservable;
 import java.util.ArrayList;
 
 public abstract class Observable {
-    private ArrayList<Observer> observers;
+    private final ArrayList<Observer> observers;
 
     public Observable() {
         this.observers = new ArrayList<Observer>();
@@ -14,7 +14,7 @@ public abstract class Observable {
     }
 
     public void notifyObservers() {
-        for(Observer o : observers) {
+        for (Observer o : observers) {
             o.update();
         }
     }

@@ -9,9 +9,9 @@ import modele.Game;
 public class ChangeModeHandler implements EventHandler<ActionEvent> {
 
     private Game game;
-    private Button button;
+    private final Button button;
 
-    public ChangeModeHandler (Game game, Button button){
+    public ChangeModeHandler(Game game, Button button) {
         this.button = button;
     }
 
@@ -19,8 +19,7 @@ public class ChangeModeHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         this.game.switchActionMode();
 
-        switch (game.getActionMode())
-        {
+        switch (game.getActionMode()) {
             case moving:
                 this.button.setText("switch on moving mode");
                 break;

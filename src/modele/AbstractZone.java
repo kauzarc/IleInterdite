@@ -13,20 +13,19 @@ public abstract class AbstractZone extends Observable {
         this.y = y;
     }
 
-    public int getX(){
+    public int getX() {
         return x;
     }
 
-    public int getY(){
+    public int getY() {
         return y;
     }
 
-    public String toString(){
+    public String toString() {
         return "#";
     }
 
     /**
-     *
      * @return Boolean means if the zone can be fill or not
      */
     public Boolean canReceiveWater() {
@@ -41,8 +40,8 @@ public abstract class AbstractZone extends Observable {
     /**
      * upgrade the level of water of the zone
      */
-    public void fillWithWater (){
-        switch(this.waterState){
+    public void fillWithWater() {
+        switch (this.waterState) {
             case normal:
                 this.waterState = WaterState.flooded;
                 break;

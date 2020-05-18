@@ -13,7 +13,7 @@ public class Player extends Character{
      * @param az zone that needs to be at 1 absolute distance of the player
      * @return direction to go to to reach the tile.
      */
-    public Direction playerToZoneDirection(AbstractZone az){
+    public Direction playerToZoneDirection(AbstractZone az)throws ZoneUnreachableException{
         switch (az.x - this.x){
             case 1:
                 return Direction.right;
@@ -27,7 +27,7 @@ public class Player extends Character{
                         return Direction.up;
                 }
         }
-        return Direction.up;
+        throw new ZoneUnreachableException("zone: ["+az.x+","+az.y+"] too far for player: ["+this.x+","+this.y+"]");
     }
 
 

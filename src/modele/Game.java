@@ -22,19 +22,18 @@ public class Game {
     public Game(Stage stage, int sizeX, int sizeY, int nbPlayer) {
         this.board = new Board(this, sizeX, sizeY);
         this.players = new ArrayList<>();
-        this.viewDirector = new ViewDirector(this, stage);
-
         for (int i = 0; i < nbPlayer; i++) {
             addPlayer();
         }
-
         this.currentPlayerIndex = 0;
         this.actionCount = 0;
         this.actionMode = PlayerActionMode.moving;
+        this.viewDirector = new ViewDirector(this, stage);
+
     }
 
     private void addPlayer() {
-        int i = this.players.size();
+        int i = this.players.size()+1;
         this.players.add(new Player(i, i, this.board));
     }
 

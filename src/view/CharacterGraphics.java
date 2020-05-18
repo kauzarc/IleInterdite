@@ -16,6 +16,7 @@ public class CharacterGraphics extends Rectangle implements Observer {
         super(SCALE * concernedCharacter.getX() + 1, SCALE * concernedCharacter.getY() + 1, (SCALE / 2) - 2, (SCALE / 2) - 2);
         concernedCharacter.addObserver(this);
         this.character = concernedCharacter;
+        System.out.println("Graphics ["+this.character.getX()+","+this.character.getY()+"]");
         this.scale = SCALE;
         this.previousX = this.character.getX();
         this.previousY = this.character.getY();

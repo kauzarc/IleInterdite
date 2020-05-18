@@ -9,6 +9,7 @@ public abstract class Character extends Observable {
 
     public Character(int x, int y, Board map) {
         super();
+        System.out.println("["+x+","+y+"]");
         this.x = x;
         this.y = y;
         this.map = map;
@@ -17,12 +18,12 @@ public abstract class Character extends Observable {
     public void walk(Direction D) {
         switch (D) {
             case up:
-                if (this.y < this.map.getSizeY() - 1) {
+                if (this.y > 0) {
                     this.y -= 1;
                 }
                 break;
             case down:
-                if (this.y > 0) {
+                if (this.y < this.map.getSizeY() - 1) {
                     this.y += 1;
                 }
                 break;

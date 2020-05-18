@@ -17,14 +17,14 @@ public class NomalCaracterTest extends TestCase {
     public void testDeplacement() throws Exception {
         p0_0.walk(Direction.up);
         assertEquals(p0_0.getX(), 0);
-        assertEquals(p0_0.getY(), 1);
+        assertEquals(p0_0.getY(), -1);
     }
 
     public void testDeplacement2() throws Exception {
         p0_0.walk(Direction.up);
         p0_0.walk(Direction.down);
         p0_0.walk(Direction.right);
-        assertEquals(p0_0.getY(),0);
+        assertEquals(p0_0.getY(),-1);
         assertEquals(p0_0.getX(),1);
     }
     public void testDeplacement3 () throws Exception {
@@ -33,7 +33,4 @@ public class NomalCaracterTest extends TestCase {
         assertEquals(p0_0.getX(),0);
         assertEquals(p0_0.getY(),0);
     }
-
-
-
 }

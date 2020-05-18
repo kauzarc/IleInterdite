@@ -15,25 +15,27 @@ public class Game {
     private final List<Player> players;
     private final ViewDirector viewDirector;
 
-    private final int currentPlayerIndex;
+    private int currentPlayerIndex;
     private int actionCount;
     private PlayerActionMode actionMode;
 
     public Game(Stage stage, int sizeX, int sizeY, int nbPlayer) {
         this.board = new Board(this, sizeX, sizeY);
         this.players = new ArrayList<>();
+
         for (int i = 0; i < nbPlayer; i++) {
             addPlayer();
         }
+
         this.currentPlayerIndex = 0;
         this.actionCount = 0;
         this.actionMode = PlayerActionMode.moving;
-        this.viewDirector = new ViewDirector(this, stage);
 
+        this.viewDirector = new ViewDirector(this, stage);
     }
 
     private void addPlayer() {
-        int i = this.players.size()+1;
+        int i = this.players.size() + 1;
         this.players.add(new Player(i, i, this.board));
     }
 
@@ -53,8 +55,9 @@ public class Game {
         this.actionCount++;
     }
 
-    public void resetActionCount(){
+    public void nextPlayer() {
         this.actionCount = 0;
+        this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.size();
     }
 
     public int getActionCount() {

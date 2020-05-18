@@ -9,7 +9,7 @@ public abstract class Character extends Observable {
 
     public Character(int x, int y, Board map) {
         super();
-        System.out.println("["+x+","+y+"]");
+        System.out.println("[" + x + "," + y + "]");
         this.x = x;
         this.y = y;
         this.map = map;

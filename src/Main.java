@@ -5,6 +5,6 @@ import modele.Game;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Game g = new Game(stage, 10, 10, 1);
+        Game g = new Game(stage, 10, 10, 4);
     }
 }

@@ -16,6 +16,6 @@ public class EndTurnHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         this.game.getBoard().randomFilling(3);
-        this.game.resetActionCount();
+        this.game.nextPlayer();
     }
 }

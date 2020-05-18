@@ -19,20 +19,20 @@ public class TileClickedHandler implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         AbstractZone zone = tile.getZone();
-        switch (UserActionState.getInstance().getMod()) {
-            case moving:
-                System.out.println("Try to move to : " + zone.getX() + ", " + zone.getY());
-                if (board.getNowPlayer().zoneReachable(zone)){
-                    System.out.println("enum : " + board.getNowPlayer().playerToZoneDirection(zone));
-                    board.getNowPlayer().walk(board.getNowPlayer().playerToZoneDirection(zone));
-                }
+        if (UserActionState.getInstance().getActionCount() <3) {
+            switch (UserActionState.getInstance().getMod()) {
+                case moving:
+                    if (board.getNowPlayer().zoneReachable(zone)) {
+                        UserActionState.getInstance().actionCountUp();
+                        board.getNowPlayer().walk(board.getNowPlayer().playerToZoneDirection(zone));
+                    }
 
-                break;
+                    break;
 
-            case drying:
-                System.out.println("Try to dry at : " + zone.getX() + ", " + zone.getY());
-                break;
+                case drying:
+                    System.out.println("Try to dry at : " + zone.getX() + ", " + zone.getY());
+                    break;
+            }
         }
-
     }
 }

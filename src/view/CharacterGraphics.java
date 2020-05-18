@@ -1,6 +1,6 @@
 package view;
 
-import ObserverObservable.Observer;
+import observerObservable.Observer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Translate;

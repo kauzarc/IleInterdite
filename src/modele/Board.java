@@ -1,26 +1,25 @@
 package modele;
-
-import ObserverObservable.Observable;
-import ObserverObservable.Observer;
+import observerObservable.Observable;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Board extends Observable {
+    private Game game;
+
     private int sizeX;
     private int sizeY;
 
     private ArrayList< ArrayList<AbstractZone> > zones;
     private ArrayList<Player> players;
-    private int nowPlayerIndex;
 
-    public Board(int sizeX,int sizeY){
+    public Board(Game game, int sizeX,int sizeY){
         super();
+        this.game = game;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.zones = new ArrayList<ArrayList<AbstractZone>>(sizeX);
         this.players = new ArrayList<Player>();
-        this.nowPlayerIndex = 0;
         fillBoard();
     }
 
@@ -52,7 +51,6 @@ public class Board extends Observable {
         }
         return numberOfZone;
     }
-
 
     /**
      * fill the board with NormalZone
@@ -110,10 +108,6 @@ public class Board extends Observable {
         this.players.add(p1);
     }
 
-    public Player getNowPlayer(){
-        return this.players.get(nowPlayerIndex);
-    }
-
     @Override
     public String toString() {
         String toReturn = new String();
@@ -131,5 +125,9 @@ public class Board extends Observable {
             toReturn += "\n";
         }
         return toReturn;
+    }
+
+    public Game getGame(){
+        return this.game;
     }
 }

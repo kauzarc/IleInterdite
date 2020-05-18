@@ -1,5 +1,6 @@
 package modele;
 
+import javafx.stage.Stage;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,10 +10,15 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class BoardTest extends TestCase {
-    Board b4_4 = new Board(4, 4);
-    Board b10_1 = new Board(10,1);
-    Board b1_3 = new Board(1,3);
-    Board b1_1 = new Board(1,1);
+    Game game4_4 = new Game(new Stage(), 4, 4, 1);
+    Game game10_1 = new Game(new Stage(), 10, 1, 1);
+    Game game1_3 = new Game(new Stage(), 1, 3, 1);
+    Game game1_1 = new Game(new Stage(), 1, 1, 1);
+
+    Board b4_4 = game4_4.getBoard();
+    Board b10_1 = game10_1.getBoard();
+    Board b1_3 = game1_3.getBoard();
+    Board b1_1 = game1_1.getBoard();
     NormalZone nz00 = new NormalZone(0,0);
 
     @Before

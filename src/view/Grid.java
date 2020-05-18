@@ -1,7 +1,7 @@
 package view;
 
-import Controller.TileClickedHandler;
-import ObserverObservable.Observer;
+import controller.TileClickedHandler;
+import observerObservable.Observer;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import modele.AbstractZone;
@@ -37,7 +37,7 @@ public class Grid extends Pane implements Observer {
                     actualZone.addObserver(tile);
                 }
 
-                tile.setOnMouseClicked(new TileClickedHandler(tile,board));
+                tile.setOnMouseClicked(new TileClickedHandler(this.board.getGame(), tile));
             }
         }
     }

@@ -1,28 +1,28 @@
 package view;
 
-import Controller.ChangeModeHandler;
-import Controller.EndTurnHandler;
+import controller.ChangeModeHandler;
+import controller.EndTurnHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import modele.Board;
+import modele.Game;
 
 public class ViewDirector {
     private final Stage mainWindow;
     private final Grid grid;
 
-    public ViewDirector(Stage mainWindow, Board board) {
+    public ViewDirector(Game game, Stage mainWindow) {
         this.mainWindow = mainWindow;
-        this.grid = new Grid(board);
+        this.grid = new Grid(game.getBoard());
 
         mainWindow.setHeight(570);
         mainWindow.setWidth(505);
         //had button and its action
         Button endTurnButton = createButton("fin de tour", 220, 500);
-        endTurnButton.setOnAction(new EndTurnHandler(board));
+        endTurnButton.setOnAction(new EndTurnHandler(game));
         Button changeModeButton = createButton("switch on drying mode", 315, 500);
-        changeModeButton.setOnAction(new ChangeModeHandler(changeModeButton));
+        changeModeButton.setOnAction(new ChangeModeHandler(game, changeModeButton));
 
 
         //add node root and its children

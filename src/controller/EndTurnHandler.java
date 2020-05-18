@@ -1,20 +1,19 @@
-package Controller;
+package controller;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import modele.Board;
+import modele.Game;
 
 public class EndTurnHandler implements EventHandler<ActionEvent> {
-    private Board board;
-     public EndTurnHandler (Board board){
+    private Game game;
+
+     public EndTurnHandler (Game game){
          super();
-         this.board = board;
+         this.game = game;
      }
      //faire des test
     @Override
     public void handle(ActionEvent actionEvent) {
-         UserActionState.getInstance().reset();
-         board.randomFilling(3);
+         this.game.getBoard().randomFilling(3);
     }
 }

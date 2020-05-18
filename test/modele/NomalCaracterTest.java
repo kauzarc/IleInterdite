@@ -1,12 +1,14 @@
 package modele;
 
+import javafx.stage.Stage;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
 public class NomalCaracterTest extends TestCase {
 
-    Board b5_5 = new Board(5, 5);
+    Game game = new Game(new Stage(), 5, 5, 1);
+    Board b5_5 = game.getBoard();
     Player p0_0 = new Player(0,0, b5_5);
     @Before
     public void setUp() throws Exception {

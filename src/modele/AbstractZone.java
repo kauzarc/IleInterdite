@@ -1,7 +1,7 @@
 package modele;
 
 
-import ObserverObservable.Observable;
+import observerObservable.Observable;
 
 public abstract class AbstractZone extends Observable {
     protected WaterState waterState;

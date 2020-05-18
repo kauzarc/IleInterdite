@@ -1,6 +1,6 @@
 package modele;
 
-import ObserverObservable.Observable;
+import observerObservable.Observable;
 
 public abstract class Character extends Observable {
     protected int x;
@@ -47,6 +47,4 @@ public abstract class Character extends Observable {
     public int getY (){
         return this.y;
     }
-
-
 }

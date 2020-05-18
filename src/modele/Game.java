@@ -53,6 +53,10 @@ public class Game {
         this.actionCount++;
     }
 
+    public void resetActionCount(){
+        this.actionCount = 0;
+    }
+
     public int getActionCount() {
         return actionCount;
     }

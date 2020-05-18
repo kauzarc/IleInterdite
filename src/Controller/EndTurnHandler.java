@@ -14,6 +14,7 @@ public class EndTurnHandler implements EventHandler<ActionEvent> {
      //faire des test
     @Override
     public void handle(ActionEvent actionEvent) {
-        board.randomFilling(3);
+         UserActionState.getInstance().reset();
+         board.randomFilling(3);
     }
 }

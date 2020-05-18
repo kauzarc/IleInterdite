@@ -33,7 +33,7 @@ public class Player extends Character{
 
     public boolean zoneReachable(AbstractZone az){
         if (az instanceof NormalZone && this.isZoneAdjacent(az)){
-            if (((NormalZone) az).getWaterState() == WaterState.normal){
+            if (((NormalZone) az).getWaterState() != WaterState.submerged){
                 return true;
             }
         }

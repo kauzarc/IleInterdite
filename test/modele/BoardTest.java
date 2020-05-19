@@ -1,16 +1,15 @@
 package modele;
 
-import javafx.stage.Stage;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
 public class BoardTest extends TestCase {
 
-    Board b4_4 = Board.boardForTest(4,4);
-    Board b10_1 = Board.boardForTest(10,1);
-    Board b1_3 = Board.boardForTest(1,3);
-    Board b1_1 = Board.boardForTest(1,1);
+    Board b4_4 = Board.boardForTest(4, 4);
+    Board b10_1 = Board.boardForTest(10, 1);
+    Board b1_3 = Board.boardForTest(1, 3);
+    Board b1_1 = Board.boardForTest(1, 1);
     NormalZone nz00 = new NormalZone(0, 0);
 
     @Before

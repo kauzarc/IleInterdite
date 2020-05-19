@@ -18,7 +18,7 @@ public class Board extends Observable {
         this.game = game;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        this.zones = new ArrayList<ArrayList<AbstractZone>>(sizeX);
+        this.zones = new ArrayList<>(sizeX);
         fillBoard();
     }
 
@@ -27,12 +27,11 @@ public class Board extends Observable {
         this.game = null;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        this.zones = new ArrayList<ArrayList<AbstractZone>>(sizeX);
+        this.zones = new ArrayList<>(sizeX);
         fillBoard();
     }
 
-    public static Board boardForTest(int sizeX, int sizeY)
-    {
+    public static Board boardForTest(int sizeX, int sizeY) {
         return new Board(sizeX, sizeY);
     }
 
@@ -82,7 +81,7 @@ public class Board extends Observable {
      * @param x int
      * @param y int
      * @return an AbstractZone
-     * @throws IndexOutOfBoundsException
+     * @throws IndexOutOfBoundsException if x,y out of bound
      */
     public AbstractZone getAt(int x, int y) throws IndexOutOfBoundsException {
         if (x < 0 || x >= this.sizeX || y < 0 || y >= this.sizeY) {
@@ -97,7 +96,7 @@ public class Board extends Observable {
      * @param number
      */
     public void randomFilling(int number) {
-        ArrayList<AbstractZone> fillable = new ArrayList<AbstractZone>();
+        ArrayList<AbstractZone> fillable = new ArrayList<>();
         for (int y = 0; y < this.sizeY; y += 1) {
             for (int x = 0; x < this.sizeX; x += 1) {
                 AbstractZone actualZone = this.zones.get(x).get(y);

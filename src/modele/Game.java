@@ -13,13 +13,13 @@ public class Game {
 
     private final Board board;
     private final List<Player> players;
-    private final ViewDirector viewDirector;
+    private ViewDirector viewDirector;
 
     private int currentPlayerIndex;
     private int actionCount;
     private PlayerActionMode actionMode;
 
-    public Game(Stage stage, int sizeX, int sizeY, int nbPlayer) {
+    private Game(int sizeX, int sizeY, int nbPlayer) {
         this.board = new Board(this, sizeX, sizeY);
         this.players = new ArrayList<>();
 
@@ -30,8 +30,15 @@ public class Game {
         this.currentPlayerIndex = 0;
         this.actionCount = 0;
         this.actionMode = PlayerActionMode.moving;
+    }
 
+    public Game(Stage stage, int sizeX, int sizeY, int nbPlayer) {
+        this(sizeX, sizeY, nbPlayer);
         this.viewDirector = new ViewDirector(this, stage);
+    }
+
+    static Game gameForTest(int sizeX, int sizeY, int nbPlayer) {
+        return new Game(sizeX, sizeY, nbPlayer);
     }
 
     private void addPlayer() {

@@ -31,7 +31,7 @@ public class Board extends Observable {
         fillBoard();
     }
 
-    public static Board boardForTest(int sizeX, int sizeY) {
+    static Board boardForTest(int sizeX, int sizeY) {
         return new Board(sizeX, sizeY);
     }
 

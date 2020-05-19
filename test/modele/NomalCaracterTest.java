@@ -7,8 +7,7 @@ import org.junit.Test;
 
 public class NomalCaracterTest extends TestCase {
 
-    Game game = new Game(new Stage(), 5, 5, 1);
-    Board b5_5 = game.getBoard();
+    Board b5_5 = Board.boardForTest(5, 5);
     Player p0_0 = new Player(0, 0, b5_5);
 
     @Before

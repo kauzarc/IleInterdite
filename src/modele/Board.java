@@ -22,6 +22,20 @@ public class Board extends Observable {
         fillBoard();
     }
 
+    private Board(int sizeX, int sizeY) {
+        super();
+        this.game = null;
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+        this.zones = new ArrayList<ArrayList<AbstractZone>>(sizeX);
+        fillBoard();
+    }
+
+    public static Board boardForTest(int sizeX, int sizeY)
+    {
+        return new Board(sizeX, sizeY);
+    }
+
     public int getSizeX() {
         return sizeX;
     }

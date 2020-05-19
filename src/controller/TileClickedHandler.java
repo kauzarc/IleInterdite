@@ -1,12 +1,11 @@
 package controller;
 
+import exception.ZoneUnreachableException;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import modele.AbstractZone;
 import modele.Direction;
 import modele.Game;
-import modele.Board;
-import modele.ZoneUnreachableException;
 import view.AbstractTile;
 
 public class TileClickedHandler implements EventHandler<MouseEvent> {
@@ -21,8 +20,7 @@ public class TileClickedHandler implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         AbstractZone zone = tile.getZone();
-        System.out.println("x :" + zone.getX() + "y : " + zone.getY() + "player x : " + board.getNowPlayer().getX()
-                + "y : " + board.getNowPlayer().getY());
+        System.out.println("x :" + zone.getX() + "y : " + zone.getY() + ", player x : " + this.game.getCurrentPlayer().getX() + "y : " + this.game.getCurrentPlayer().getY());
         if (this.game.getActionCount() < 3) {
             switch (this.game.getActionMode()) {
                 case moving:

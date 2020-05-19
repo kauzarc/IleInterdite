@@ -1,5 +1,7 @@
 package modele;
 
+import exception.ZoneUnreachableException;
+
 public class Player extends Character {
     public Player(int x, int y, Board map) {
         super(x, y, map);
@@ -33,9 +35,7 @@ public class Player extends Character {
 
     public boolean zoneReachable(AbstractZone az) {
         if (az instanceof NormalZone && this.isZoneAdjacent(az)) {
-            if (((NormalZone) az).getWaterState() != WaterState.submerged) {
-                return true;
-            }
+            return az.getWaterState() != WaterState.submerged;
         }
         return false;
     }

@@ -1,7 +1,7 @@
-package modele;
+package exception;
 
 public class ZoneUnreachableException extends Exception {
-    ZoneUnreachableException(String s){
+    public ZoneUnreachableException(String s) {
         super(s);
     }
 }

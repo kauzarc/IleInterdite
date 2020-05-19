@@ -8,10 +8,11 @@ import modele.Game;
 
 public class ChangeModeHandler implements EventHandler<ActionEvent> {
 
-    private Game game;
+    private final Game game;
     private final Button button;
 
     public ChangeModeHandler(Game game, Button button) {
+        this.game = game;
         this.button = button;
     }
 

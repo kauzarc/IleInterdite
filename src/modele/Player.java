@@ -13,7 +13,7 @@ public class Player extends Character {
      * @param az zone that needs to be at 1 absolute distance of the player
      * @return direction to go to to reach the tile.
      */
-    public Direction playerToZoneDirection(AbstractZone az) {
+    public Direction playerToZoneDirection(AbstractZone az) throws ZoneUnreachableException {
         switch (az.x - this.x) {
             case 1:
                 return Direction.right;
@@ -27,13 +27,15 @@ public class Player extends Character {
                         return Direction.up;
                 }
         }
-        return Direction.up;
+        throw new ZoneUnreachableException(
+                "zone: [" + az.x + "," + az.y + "] too far for player: [" + this.x + "," + this.y + "]");
     }
-
 
     public boolean zoneReachable(AbstractZone az) {
         if (az instanceof NormalZone && this.isZoneAdjacent(az)) {
-            return az.getWaterState() == WaterState.normal;
+            if (((NormalZone) az).getWaterState() != WaterState.submerged) {
+                return true;
+            }
         }
         return false;
     }

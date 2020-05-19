@@ -18,8 +18,6 @@ public class ChangeModeHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.game.switchActionMode();
-
         switch (game.getActionMode()) {
             case moving:
                 this.button.setText("switch on moving mode");
@@ -29,5 +27,6 @@ public class ChangeModeHandler implements EventHandler<ActionEvent> {
                 this.button.setText("switch on drying mode");
                 break;
         }
+        this.game.switchActionMode();
     }
 }

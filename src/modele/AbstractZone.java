@@ -48,8 +48,22 @@ public abstract class AbstractZone extends Observable {
             case flooded:
                 this.waterState = WaterState.submerged;
                 break;
-            default:
+            case submerged:
                 System.out.println("Ne peut pas être plus remplie");
+        }
+        notifyObservers();
+    }
+
+    public void dryWater() {
+        switch (this.waterState) {
+            case normal:
+                System.out.println("Est deja sec");
+                break;
+            case flooded:
+                this.waterState = WaterState.normal;
+                break;
+            case submerged:
+                this.waterState = WaterState.flooded;
         }
         notifyObservers();
     }

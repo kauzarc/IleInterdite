@@ -29,8 +29,7 @@ public class Player extends Character {
                         return Direction.up;
                 }
         }
-        throw new ZoneUnreachableException(
-                "zone: [" + az.x + "," + az.y + "] too far for player: [" + this.x + "," + this.y + "]");
+        throw new ZoneUnreachableException("zone: [" + az.x + "," + az.y + "] too far for player: [" + this.x + "," + this.y + "]");
     }
 
     public boolean zoneReachable(AbstractZone az) {

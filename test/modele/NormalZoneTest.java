@@ -38,4 +38,18 @@ public class NormalZoneTest extends TestCase {
         zone.fillWithWater();
         assertEquals(zone.getWaterState(), WaterState.submerged);
     }
+
+    @Test
+    public void testDryWater() {
+        zone = new NormalZone(0, 0);
+        zone.fillWithWater();
+        zone.fillWithWater();
+        assertEquals(zone.getWaterState(), WaterState.submerged);
+        zone.dryWater();
+        assertEquals(zone.getWaterState(), WaterState.flooded);
+        zone.dryWater();
+        assertEquals(zone.getWaterState(), WaterState.normal);
+        zone.dryWater();
+        assertEquals(zone.getWaterState(), WaterState.normal);
+    }
 }

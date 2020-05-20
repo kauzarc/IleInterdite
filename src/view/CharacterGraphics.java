@@ -22,29 +22,39 @@ public class CharacterGraphics extends Group implements Observer {
 
     private Rectangle boundRectangle;
     private ArrayList<Rectangle> actionRectangles;
+
     public CharacterGraphics(Character concernedCharacter, int SCALE) {
         super();
-        this.setTranslateX(SCALE * concernedCharacter.getX());
-        this.setTranslateY(SCALE * concernedCharacter.getY());
-        this.boundRectangle = new Rectangle( SCALE/4,  SCALE/4, SCALE / 2 , SCALE / 2);
-        this.actionRectangles = new ArrayList<>(0);
-        this.getChildren().add(boundRectangle);
+        this.scale = SCALE;
+        this.setTranslateX(this.scale * concernedCharacter.getX());
+        this.setTranslateY(this.scale * concernedCharacter.getY());
 
-        this.actionRectangles.add(new Rectangle(4 * SCALE/12,SCALE/4 + 0.5*SCALE/(2*6),4*SCALE/12,SCALE/(2*6)));
-        this.actionRectangles.add(new Rectangle(4 * SCALE/12,SCALE/4 + 2.5*SCALE/(2*6), 4*SCALE/12,SCALE/(2*6)));
-        this.actionRectangles.add(new Rectangle(4 * SCALE/12,SCALE/4 + 4.5*SCALE/(2*6),4*SCALE/12,SCALE/(2*6)));
-        for (Rectangle actionRectangle:this.actionRectangles){
-            actionRectangle.setFill(Color.YELLOW);
-            this.getChildren().add(actionRectangle);
-        }
         concernedCharacter.addObserver(this);
+        initBoundRectangle();
+        initActionRectangles();
         this.character = concernedCharacter;
         System.out.println("Graphics [" + this.character.getX() + "," + this.character.getY() + "]");
-        this.scale = SCALE;
         this.previousX = this.character.getX();
         this.previousY = this.character.getY();
         this.update();
 
+    }
+
+    private void initActionRectangles() {
+        this.actionRectangles = new ArrayList<>(0);
+        this.actionRectangles.add(new Rectangle(4 * this.scale / 12, this.scale / 4 + 0.5 * this.scale / (2 * 6), 4 * this.scale / 12, this.scale / (2 * 6)));
+        this.actionRectangles.add(new Rectangle(4 * this.scale / 12, this.scale / 4 + 2.5 * this.scale / (2 * 6), 4 * this.scale / 12, this.scale / (2 * 6)));
+        this.actionRectangles.add(new Rectangle(4 * this.scale / 12, this.scale / 4 + 4.5 * this.scale / (2 * 6), 4 * this.scale / 12, this.scale / (2 * 6)));
+        for (Rectangle actionRectangle : this.actionRectangles) {
+            actionRectangle.setFill(Color.YELLOW);
+            this.getChildren().add(actionRectangle);
+        }
+    }
+
+    private void initBoundRectangle() {
+        this.boundRectangle = new Rectangle(this.scale / 4, this.scale / 4, this.scale / 2, this.scale / 2);
+        this.getChildren().add(boundRectangle);
+        this.boundRectangle.setFill(Color.BLACK);
     }
 
     @Override
@@ -56,17 +66,21 @@ public class CharacterGraphics extends Group implements Observer {
         this.previousX = this.character.getX();
         this.previousY = this.character.getY();
         System.out.println(translate);
-        this.boundRectangle.setFill(Color.BLACK);
-        if (this.character.getBoard().getGame().getCurrentPlayer() == this.character){
+        updateRectangles();
+    }
+
+
+    private void updateRectangles() {
+        if (this.character.getBoard().getGame().getCurrentPlayer() == this.character) {
             this.boundRectangle.setStroke(Color.WHITE);
-            for (int i = 0; i < this.actionRectangles.size(); i+=1){
-                this.actionRectangles.get(i).setFill(i>=this.character.getBoard().getGame().getActionCount()?
-                                                        Color.GREEN:
-                                                        Color.RED);
+            for (int i = 0; i < this.actionRectangles.size(); i += 1) {
+                this.actionRectangles.get(i).setFill(i >= this.character.getBoard().getGame().getActionCount() ?
+                        Color.GREEN :
+                        Color.RED);
             }
-        }else{
+        } else {
             this.boundRectangle.setStroke(Color.GRAY);
-            for (Rectangle actionRectangle : actionRectangles){
+            for (Rectangle actionRectangle : actionRectangles) {
                 actionRectangle.setFill(Color.YELLOW);
             }
         }

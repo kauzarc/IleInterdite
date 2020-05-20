@@ -44,4 +44,10 @@ public class Player extends Character {
         AbstractZone actualPOS = this.map.getAt(this.x, this.y);
         return actualPOS.loot();
     }
+
+    public void dry(AbstractZone zone){
+        zone.dryWater();
+        notifyObservers();
+    }
+
 }

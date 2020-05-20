@@ -12,6 +12,7 @@ import modele.Character;
 import observerObservable.Observer;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class CharacterGraphics extends Group implements Observer {
     private final Character character;
@@ -20,9 +21,14 @@ public class CharacterGraphics extends Group implements Observer {
     private int previousY;
 
     private Rectangle boundRectangle;
+    private ArrayList<Rectangle> actionRectangles;
     public CharacterGraphics(Character concernedCharacter, int SCALE) {
         super();
-        this.boundRectangle = new Rectangle(SCALE * concernedCharacter.getX() + SCALE/4, SCALE * concernedCharacter.getY() + SCALE/4, (SCALE / 2) - 2, (SCALE / 2) - 2);
+        this.setTranslateX(SCALE * concernedCharacter.getX());
+        this.setTranslateY(SCALE * concernedCharacter.getY());
+        this.boundRectangle = new Rectangle( SCALE/4,  SCALE/4, (SCALE / 2) - 2, (SCALE / 2) - 2);
+        this.actionRectangles = new ArrayList<>(3);
+        
         this.getChildren().add(boundRectangle);
         concernedCharacter.addObserver(this);
         this.character = concernedCharacter;

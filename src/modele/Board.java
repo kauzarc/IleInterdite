@@ -19,7 +19,8 @@ public class Board extends Observable {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.zones = new ArrayList<>(sizeX);
-        fillBoard();
+        fillBoardWithSpecials();
+        System.out.println("pas de bug au constructeur");
     }
 
     private Board(int sizeX, int sizeY) {
@@ -79,6 +80,48 @@ public class Board extends Observable {
         }
     }
 
+
+    public void fillBoardWithSpecials(){
+        for (int x = 0; x < this.sizeX; x += 1) {
+            ArrayList<AbstractZone> column = new ArrayList<>(sizeY);
+            for (int y = 0; y < this.sizeY; y += 1) {
+                column.add(null);
+            }
+            this.zones.add(column);
+        }
+
+
+        ArrayList<Integer> notFilledZoneIndexes = new ArrayList<>(this.sizeX * this.sizeY);
+
+        for (int i =0; i < this.sizeX * this.sizeY; i+=1){
+            notFilledZoneIndexes.add(Integer.valueOf(i));//À cause des surchages de .remove
+        }
+        System.out.println(notFilledZoneIndexes.size());
+        for (int artifactNumber = 0; artifactNumber < 4; artifactNumber += 1){
+            int randomIndex = ThreadLocalRandom.current().nextInt(0, notFilledZoneIndexes.size());
+            int xy = notFilledZoneIndexes.get(randomIndex);
+            int x = xy/this.sizeX;
+            int y = xy%this.sizeX;
+            this.setAt(x,y, new ArtifactZone(x,y,Artifact.values()[artifactNumber]));
+            notFilledZoneIndexes.remove(Integer.valueOf(xy));
+        }
+
+        int randomIndex = ThreadLocalRandom.current().nextInt(0, notFilledZoneIndexes.size());
+        int xy = notFilledZoneIndexes.get(randomIndex);
+        int x = xy/this.sizeX;
+        int y = xy%this.sizeX;
+        this.setAt(x, y, new HeliportZone(x,y,this));
+        notFilledZoneIndexes.remove(Integer.valueOf(xy));
+
+        for (Integer foldedXy : notFilledZoneIndexes){
+            int xN = foldedXy/this.sizeX;
+            int yN = foldedXy%this.sizeX;
+            this.setAt(x, y, new NormalZone(xN,yN));
+        }
+
+
+    }
+
     /**
      * permit to get the zone at the cooordinates X and Y
      *
@@ -92,6 +135,17 @@ public class Board extends Observable {
             throw new IndexOutOfBoundsException("Wrong x or y index at access for this board :" + this);
         }
         return zones.get(x).get(y);
+    }
+    public void setAtFoldedIndex(int xyFolded, AbstractZone value) throws IndexOutOfBoundsException{
+        setAt(xyFolded/this.sizeX,xyFolded/this.sizeY,value);
+    }
+    public void setAt(int x, int y,AbstractZone value)throws IndexOutOfBoundsException{
+        if (x < 0 || x >= this.sizeX || y < 0 || y >= this.sizeY) {
+            throw new IndexOutOfBoundsException("Wrong x or y index at access for this board :" + this);
+        }
+        ArrayList<AbstractZone> a =zones.get(x);
+        a.set(y,value);
+        zones.set(x,a);
     }
 
     /**

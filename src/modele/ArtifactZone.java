@@ -11,11 +11,6 @@ public class ArtifactZone extends AbstractZone {
         return this.artifact;
     }
 
-    public Artifact recoverArtifact(){
-        Artifact treasure = this.artifact;
-        this.artifact = Artifact.nothing;
-        return treasure;
-    }
 
     public boolean isThereArtifact(){
         return !(this.artifact == Artifact.nothing);
@@ -24,6 +19,8 @@ public class ArtifactZone extends AbstractZone {
     @Override
     public Artifact loot(){
         System.out.println("la vie y a un truc");
-        return this.artifact;
+        Artifact treasure = this.artifact;
+        this.artifact = Artifact.nothing;
+        return treasure;
     }
 }

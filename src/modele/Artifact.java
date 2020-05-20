@@ -6,4 +6,5 @@ public enum Artifact {
     earthArtifact,
     windArtifact,
     nothing;
+
 }

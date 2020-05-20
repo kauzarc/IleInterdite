@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import junit.framework.TestCase;
 import org.junit.Before;

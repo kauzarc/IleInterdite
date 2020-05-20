@@ -1,11 +1,10 @@
 package modele;
 
-import org.junit.Assert;
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
-import junit.framework.TestCase;
 
-public class NormalZoneTest extends TestCase{
+public class NormalZoneTest extends TestCase {
     NormalZone zone;
 
     @Before
@@ -26,17 +25,31 @@ public class NormalZoneTest extends TestCase{
     }
 
     @Test
-    public void testFillWithWater (){
+    public void testFillWithWater() {
         zone = new NormalZone(0, 0);
         zone.fillWithWater();
         assertEquals(zone.getWaterState(), WaterState.flooded);
     }
 
-    //je sais pas
-    public void testFillWithWater2 (){
-        zone = new NormalZone(0,0);
+    @Test
+    public void testFillWithWater2() {
+        zone = new NormalZone(0, 0);
         zone.fillWithWater();
         zone.fillWithWater();
         assertEquals(zone.getWaterState(), WaterState.submerged);
+    }
+
+    @Test
+    public void testDryWater() {
+        zone = new NormalZone(0, 0);
+        zone.fillWithWater();
+        zone.fillWithWater();
+        assertEquals(zone.getWaterState(), WaterState.submerged);
+        zone.dryWater();
+        assertEquals(zone.getWaterState(), WaterState.flooded);
+        zone.dryWater();
+        assertEquals(zone.getWaterState(), WaterState.normal);
+        zone.dryWater();
+        assertEquals(zone.getWaterState(), WaterState.normal);
     }
 }

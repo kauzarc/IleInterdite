@@ -26,10 +26,17 @@ public class CharacterGraphics extends Group implements Observer {
         super();
         this.setTranslateX(SCALE * concernedCharacter.getX());
         this.setTranslateY(SCALE * concernedCharacter.getY());
-        this.boundRectangle = new Rectangle( SCALE/4,  SCALE/4, (SCALE / 2) - 2, (SCALE / 2) - 2);
-        this.actionRectangles = new ArrayList<>(3);
-        
+        this.boundRectangle = new Rectangle( SCALE/4,  SCALE/4, SCALE / 2 , SCALE / 2);
+        this.actionRectangles = new ArrayList<>(0);
         this.getChildren().add(boundRectangle);
+
+        this.actionRectangles.add(new Rectangle(4 * SCALE/12,SCALE/4 + 0.5*SCALE/(2*6),4*SCALE/12,SCALE/(2*6)));
+        this.actionRectangles.add(new Rectangle(4 * SCALE/12,SCALE/4 + 2.5*SCALE/(2*6), 4*SCALE/12,SCALE/(2*6)));
+        this.actionRectangles.add(new Rectangle(4 * SCALE/12,SCALE/4 + 4.5*SCALE/(2*6),4*SCALE/12,SCALE/(2*6)));
+        for (Rectangle actionRectangle:this.actionRectangles){
+            actionRectangle.setFill(Color.YELLOW);
+            this.getChildren().add(actionRectangle);
+        }
         concernedCharacter.addObserver(this);
         this.character = concernedCharacter;
         System.out.println("Graphics [" + this.character.getX() + "," + this.character.getY() + "]");
@@ -52,9 +59,16 @@ public class CharacterGraphics extends Group implements Observer {
         this.boundRectangle.setFill(Color.BLACK);
         if (this.character.getBoard().getGame().getCurrentPlayer() == this.character){
             this.boundRectangle.setStroke(Color.WHITE);
-
+            for (int i = 0; i < this.actionRectangles.size(); i+=1){
+                this.actionRectangles.get(i).setFill(i>=this.character.getBoard().getGame().getActionCount()?
+                                                        Color.GREEN:
+                                                        Color.RED);
+            }
         }else{
             this.boundRectangle.setStroke(Color.GRAY);
+            for (Rectangle actionRectangle : actionRectangles){
+                actionRectangle.setFill(Color.YELLOW);
+            }
         }
     }
 }

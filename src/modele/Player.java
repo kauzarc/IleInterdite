@@ -38,4 +38,9 @@ public class Player extends Character {
         }
         return false;
     }
+
+    public void dry(AbstractZone zone){
+        zone.dryWater();
+        notifyObservers();
+    }
 }

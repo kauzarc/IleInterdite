@@ -56,7 +56,7 @@ public class TileClickedHandler implements EventHandler<MouseEvent> {
         if (this.game.getCurrentPlayer().zoneReachable(zone) || zone == this.game.getCurrentPlayer().getZone()) {
             if (zone.getWaterState() == WaterState.flooded) {
                 this.game.upActionCount();
-                zone.dryWater();
+                this.game.getCurrentPlayer().dry(zone);
             }
         }
     }

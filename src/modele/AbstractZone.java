@@ -67,4 +67,8 @@ public abstract class AbstractZone extends Observable {
         }
         notifyObservers();
     }
+    public Artifact loot(){
+        System.out.println("ca fouille wolla");
+        return Artifact.nothing;
+    }
 }

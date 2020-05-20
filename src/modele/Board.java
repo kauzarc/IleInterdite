@@ -35,6 +35,10 @@ public class Board extends Observable {
         return new Board(sizeX, sizeY);
     }
 
+    public Game getGame() {
+        return this.game;
+    }
+
     public int getSizeX() {
         return sizeX;
     }
@@ -135,7 +139,4 @@ public class Board extends Observable {
         return toReturn;
     }
 
-    public Game getGame() {
-        return this.game;
-    }
 }

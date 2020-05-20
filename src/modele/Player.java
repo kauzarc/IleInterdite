@@ -38,4 +38,10 @@ public class Player extends Character {
         }
         return false;
     }
+
+    //fonction a modifié plus tard surment avec l'ajout de l'inventaire
+    public Artifact lootTheZone(){
+        AbstractZone actualPOS = this.map.getAt(this.x, this.y);
+        return actualPOS.loot();
+    }
 }

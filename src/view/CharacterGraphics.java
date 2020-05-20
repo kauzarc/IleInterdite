@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.Group;
 import javafx.scene.SubScene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -12,14 +13,17 @@ import observerObservable.Observer;
 
 import java.awt.*;
 
-public class CharacterGraphics extends Rectangle implements Observer {
+public class CharacterGraphics extends Group implements Observer {
     private final Character character;
     private final int scale;
     private int previousX;
     private int previousY;
 
+    private Rectangle boundRectangle;
     public CharacterGraphics(Character concernedCharacter, int SCALE) {
-        super(SCALE * concernedCharacter.getX() + SCALE/4, SCALE * concernedCharacter.getY() + SCALE/4, (SCALE / 2) - 2, (SCALE / 2) - 2);
+        super();
+        this.boundRectangle = new Rectangle(SCALE * concernedCharacter.getX() + SCALE/4, SCALE * concernedCharacter.getY() + SCALE/4, (SCALE / 2) - 2, (SCALE / 2) - 2);
+        this.getChildren().add(boundRectangle);
         concernedCharacter.addObserver(this);
         this.character = concernedCharacter;
         System.out.println("Graphics [" + this.character.getX() + "," + this.character.getY() + "]");
@@ -27,6 +31,7 @@ public class CharacterGraphics extends Rectangle implements Observer {
         this.previousX = this.character.getX();
         this.previousY = this.character.getY();
         this.update();
+
     }
 
     @Override
@@ -38,12 +43,12 @@ public class CharacterGraphics extends Rectangle implements Observer {
         this.previousX = this.character.getX();
         this.previousY = this.character.getY();
         System.out.println(translate);
-        this.setFill(Color.BLACK);
+        this.boundRectangle.setFill(Color.BLACK);
         if (this.character.getBoard().getGame().getCurrentPlayer() == this.character){
-            this.setStroke(Color.WHITE);
+            this.boundRectangle.setStroke(Color.WHITE);
 
         }else{
-            this.setStroke(Color.GRAY);
+            this.boundRectangle.setStroke(Color.GRAY);
         }
     }
 }

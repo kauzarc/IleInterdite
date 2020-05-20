@@ -38,6 +38,7 @@ public class TileClickedHandler implements EventHandler<MouseEvent> {
 
     private void move() {
         AbstractZone zone = tile.getZone();
+        System.out.println(this.game.getCurrentPlayer());
         if (this.game.getCurrentPlayer().zoneReachable(zone)) {
             try {
                 this.game.upActionCount();

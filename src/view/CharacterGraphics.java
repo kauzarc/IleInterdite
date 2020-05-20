@@ -1,10 +1,16 @@
 package view;
 
+import javafx.scene.SubScene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Translate;
 import modele.Character;
 import observerObservable.Observer;
+
+import java.awt.*;
 
 public class CharacterGraphics extends Rectangle implements Observer {
     private final Character character;
@@ -13,7 +19,7 @@ public class CharacterGraphics extends Rectangle implements Observer {
     private int previousY;
 
     public CharacterGraphics(Character concernedCharacter, int SCALE) {
-        super(SCALE * concernedCharacter.getX() + 1, SCALE * concernedCharacter.getY() + 1, (SCALE / 2) - 2, (SCALE / 2) - 2);
+        super(SCALE * concernedCharacter.getX() + SCALE/4, SCALE * concernedCharacter.getY() + SCALE/4, (SCALE / 2) - 2, (SCALE / 2) - 2);
         concernedCharacter.addObserver(this);
         this.character = concernedCharacter;
         System.out.println("Graphics [" + this.character.getX() + "," + this.character.getY() + "]");
@@ -33,5 +39,11 @@ public class CharacterGraphics extends Rectangle implements Observer {
         this.previousY = this.character.getY();
         System.out.println(translate);
         this.setFill(Color.BLACK);
+        if (this.character.getBoard().getGame().getCurrentPlayer() == this.character){
+            this.setStroke(Color.WHITE);
+
+        }else{
+            this.setStroke(Color.GRAY);
+        }
     }
 }

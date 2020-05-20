@@ -46,7 +46,6 @@ public class Grid extends Pane implements Observer {
         for (Character p : this.board.getGame().getPlayers()) {
             CharacterGraphics cg = new CharacterGraphics(p, SCALE);
             this.getChildren().add(cg);
-            System.out.println(cg.getX() + " " + cg.getY());
         }
     }
 

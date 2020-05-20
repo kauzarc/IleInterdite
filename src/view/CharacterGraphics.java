@@ -1,26 +1,60 @@
 package view;
 
+import javafx.scene.Group;
+import javafx.scene.SubScene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Translate;
 import modele.Character;
 import observerObservable.Observer;
 
-public class CharacterGraphics extends Rectangle implements Observer {
+import java.awt.*;
+import java.util.ArrayList;
+
+public class CharacterGraphics extends Group implements Observer {
     private final Character character;
     private final int scale;
     private int previousX;
     private int previousY;
 
+    private Rectangle boundRectangle;
+    private ArrayList<Rectangle> actionRectangles;
+
     public CharacterGraphics(Character concernedCharacter, int SCALE) {
-        super(SCALE * concernedCharacter.getX() + 1, SCALE * concernedCharacter.getY() + 1, (SCALE / 2) - 2, (SCALE / 2) - 2);
+        super();
+        this.scale = SCALE;
+        this.setTranslateX(this.scale * concernedCharacter.getX());
+        this.setTranslateY(this.scale * concernedCharacter.getY());
+
         concernedCharacter.addObserver(this);
+        initBoundRectangle();
+        initActionRectangles();
         this.character = concernedCharacter;
         System.out.println("Graphics [" + this.character.getX() + "," + this.character.getY() + "]");
-        this.scale = SCALE;
         this.previousX = this.character.getX();
         this.previousY = this.character.getY();
         this.update();
+
+    }
+
+    private void initActionRectangles() {
+        this.actionRectangles = new ArrayList<>(0);
+        this.actionRectangles.add(new Rectangle(4 * this.scale / 12, this.scale / 4 + 0.5 * this.scale / (2 * 6), 4 * this.scale / 12, this.scale / (2 * 6)));
+        this.actionRectangles.add(new Rectangle(4 * this.scale / 12, this.scale / 4 + 2.5 * this.scale / (2 * 6), 4 * this.scale / 12, this.scale / (2 * 6)));
+        this.actionRectangles.add(new Rectangle(4 * this.scale / 12, this.scale / 4 + 4.5 * this.scale / (2 * 6), 4 * this.scale / 12, this.scale / (2 * 6)));
+        for (Rectangle actionRectangle : this.actionRectangles) {
+            actionRectangle.setFill(Color.YELLOW);
+            this.getChildren().add(actionRectangle);
+        }
+    }
+
+    private void initBoundRectangle() {
+        this.boundRectangle = new Rectangle(this.scale / 4, this.scale / 4, this.scale / 2, this.scale / 2);
+        this.getChildren().add(boundRectangle);
+        this.boundRectangle.setFill(Color.BLACK);
     }
 
     @Override
@@ -32,6 +66,23 @@ public class CharacterGraphics extends Rectangle implements Observer {
         this.previousX = this.character.getX();
         this.previousY = this.character.getY();
         System.out.println(translate);
-        this.setFill(Color.BLACK);
+        updateRectangles();
+    }
+
+
+    private void updateRectangles() {
+        if (this.character.getBoard().getGame().getCurrentPlayer() == this.character) {
+            this.boundRectangle.setStroke(Color.WHITE);
+            for (int i = 0; i < this.actionRectangles.size(); i += 1) {
+                this.actionRectangles.get(i).setFill(i >= this.character.getBoard().getGame().getActionCount() ?
+                        Color.GREEN :
+                        Color.RED);
+            }
+        } else {
+            this.boundRectangle.setStroke(Color.GRAY);
+            for (Rectangle actionRectangle : actionRectangles) {
+                actionRectangle.setFill(Color.YELLOW);
+            }
+        }
     }
 }

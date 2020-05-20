@@ -38,6 +38,7 @@ public class TileClickedHandler implements EventHandler<MouseEvent> {
 
     private void move() {
         AbstractZone zone = tile.getZone();
+        System.out.println(this.game.getCurrentPlayer());
         if (this.game.getCurrentPlayer().zoneReachable(zone)) {
             try {
                 this.game.upActionCount();
@@ -55,7 +56,7 @@ public class TileClickedHandler implements EventHandler<MouseEvent> {
         if (this.game.getCurrentPlayer().zoneReachable(zone) || zone == this.game.getCurrentPlayer().getZone()) {
             if (zone.getWaterState() == WaterState.flooded) {
                 this.game.upActionCount();
-                zone.dryWater();
+                this.game.getCurrentPlayer().dry(zone);
             }
         }
     }

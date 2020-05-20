@@ -53,4 +53,8 @@ public abstract class Character extends Observable {
     public AbstractZone getZone() {
         return this.map.getAt(this.x, this.y);
     }
+
+    public Board getBoard(){
+        return this.map;
+    }
 }

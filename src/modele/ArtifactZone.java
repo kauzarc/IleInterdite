@@ -1,6 +1,7 @@
 package modele;
 
 import view.AbstractTile;
+import view.ArtifactTile;
 
 public class ArtifactZone extends AbstractZone {
     private Artifact artifact;
@@ -28,6 +29,6 @@ public class ArtifactZone extends AbstractZone {
 
     @Override
     public AbstractTile createTile(int scale) {
-        return null;
+        return new ArtifactTile(this, scale);
     }
 }

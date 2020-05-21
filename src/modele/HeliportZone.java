@@ -1,6 +1,7 @@
 package modele;
 
 import view.AbstractTile;
+import view.HeliportTile;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,6 @@ public class HeliportZone extends AbstractZone {
 
     @Override
     public AbstractTile createTile(int scale) {
-        return null;
+        return new HeliportTile(this, scale);
     }
 }

@@ -1,6 +1,5 @@
 package modele;
 
-import controller.TileClickedHandler;
 import view.AbstractTile;
 import view.NormalTile;
 
@@ -12,9 +11,6 @@ public class NormalZone extends AbstractZone {
 
     @Override
     public AbstractTile createTile(int scale) {
-        NormalTile tile = new NormalTile(this, scale);
-        addObserver(tile);
-        tile.setOnMouseClicked(new TileClickedHandler(this.board.getGame(), tile));
-        return tile;
+        return new NormalTile(this, scale);
     }
 }

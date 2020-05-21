@@ -137,9 +137,7 @@ public class Board extends Observable {
         if (x < 0 || x >= this.sizeX || y < 0 || y >= this.sizeY) {
             throw new IndexOutOfBoundsException("Wrong x or y index at access for this board :" + this);
         }
-        ArrayList<AbstractZone> a =zones.get(x);
-        a.set(y,value);
-        zones.set(x,a);
+        zones.get(x).set(y,value);
     }
 
     /**

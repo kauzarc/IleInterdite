@@ -1,12 +1,13 @@
 package modele;
 
+import view.AbstractTile;
+
 import java.util.ArrayList;
 
 public class HeliportZone extends AbstractZone {
     private Board board;
-    public HeliportZone(int x, int y, Board board) {
-        super(x, y);
-        this.board = board;
+    public HeliportZone(Board board, int x, int y) {
+        super(board, x, y);
     }
 
     public int howManyPlayersThere (){
@@ -20,4 +21,8 @@ public class HeliportZone extends AbstractZone {
         return howMany;
     }
 
+    @Override
+    public AbstractTile createTile(int scale) {
+        return null;
+    }
 }

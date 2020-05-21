@@ -2,15 +2,18 @@ package modele;
 
 
 import observerObservable.Observable;
+import view.AbstractTile;
 
 public abstract class AbstractZone extends Observable {
     protected WaterState waterState;
     protected final int x;
     protected final int y;
+    protected final Board board;
 
-    protected AbstractZone(int x, int y) {
+    protected AbstractZone(Board board, int x, int y) {
         this.x = x;
         this.y = y;
+        this.board = board;
     }
 
     public int getX() {
@@ -67,8 +70,11 @@ public abstract class AbstractZone extends Observable {
         }
         notifyObservers();
     }
-    public Artifact loot(){
+
+    public Artifact loot() {
         System.out.println("ca fouille wolla");
         return Artifact.nothing;
     }
+
+    public abstract AbstractTile createTile(int scale);
 }

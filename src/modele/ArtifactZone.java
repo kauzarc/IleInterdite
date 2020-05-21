@@ -1,9 +1,11 @@
 package modele;
 
+import view.AbstractTile;
+
 public class ArtifactZone extends AbstractZone {
     private Artifact artifact;
-    protected ArtifactZone(int x, int y, Artifact artifact) {
-        super(x, y);
+    protected ArtifactZone(Board board, int x, int y, Artifact artifact) {
+        super(board, x, y);
         this.artifact = artifact;
     }
 
@@ -22,5 +24,10 @@ public class ArtifactZone extends AbstractZone {
         Artifact treasure = this.artifact;
         this.artifact = Artifact.nothing;
         return treasure;
+    }
+
+    @Override
+    public AbstractTile createTile(int scale) {
+        return null;
     }
 }

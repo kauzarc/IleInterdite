@@ -29,15 +29,8 @@ public class Grid extends Pane implements Observer {
         for (int x = 0; x < board.getSizeX(); x++) {
             for (int y = 0; y < this.board.getSizeY(); y++) {
                 AbstractZone actualZone = this.board.getAt(x, y);
-                AbstractTile tile = null;
-
-                if (actualZone instanceof NormalZone) {
-                    tile = new NormalTile(((NormalZone) actualZone), SCALE);
-                    this.getChildren().add(tile);
-                    actualZone.addObserver(tile);
-                }
-
-                tile.setOnMouseClicked(new TileClickedHandler(this.board.getGame(), tile));
+                AbstractTile tile = actualZone.createTile(SCALE);
+                this.getChildren().add(tile);
             }
         }
     }

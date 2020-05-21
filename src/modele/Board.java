@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Board extends Observable {
-    private final Game game;
+    private Game game;
 
     private final int sizeX;
     private final int sizeY;
@@ -14,18 +14,12 @@ public class Board extends Observable {
     private final ArrayList<ArrayList<AbstractZone>> zones;
 
     public Board(Game game, int sizeX, int sizeY) {
-        super();
+        this(sizeX, sizeY);
         this.game = game;
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
-        this.zones = new ArrayList<>(sizeX);
-        fillBoardWithSpecials();
-        System.out.println("pas de bug au constructeur");
     }
 
     private Board(int sizeX, int sizeY) {
         super();
-        this.game = null;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.zones = new ArrayList<>(sizeX);
@@ -74,7 +68,7 @@ public class Board extends Observable {
         for (int x = 0; x < this.sizeX; x += 1) {
             ArrayList<AbstractZone> column = new ArrayList<>(sizeY);
             for (int y = 0; y < this.sizeY; y += 1) {
-                column.add(new NormalZone(x, y));
+                column.add(new NormalZone(this, x, y));
             }
             this.zones.add(column);
         }
@@ -102,7 +96,7 @@ public class Board extends Observable {
             int xy = notFilledZoneIndexes.get(randomIndex);
             int x = xy/this.sizeX;
             int y = xy%this.sizeX;
-            this.setAt(x,y, new ArtifactZone(x,y,Artifact.values()[artifactNumber]));
+            this.setAt(x,y, new ArtifactZone(this, x,y,Artifact.values()[artifactNumber]));
             notFilledZoneIndexes.remove(Integer.valueOf(xy));
         }
 
@@ -110,13 +104,13 @@ public class Board extends Observable {
         int xy = notFilledZoneIndexes.get(randomIndex);
         int x = xy/this.sizeX;
         int y = xy%this.sizeX;
-        this.setAt(x, y, new HeliportZone(x,y,this));
+        this.setAt(x, y, new HeliportZone(this, x,y));
         notFilledZoneIndexes.remove(Integer.valueOf(xy));
 
         for (Integer foldedXy : notFilledZoneIndexes){
             int xN = foldedXy/this.sizeX;
             int yN = foldedXy%this.sizeX;
-            this.setAt(x, y, new NormalZone(xN,yN));
+            this.setAt(x, y, new NormalZone(this, xN,yN));
         }
 
 

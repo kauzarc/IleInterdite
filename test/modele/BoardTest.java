@@ -10,7 +10,7 @@ public class BoardTest extends TestCase {
     Board b10_1 = Board.boardForTest(10, 1);
     Board b1_3 = Board.boardForTest(1, 3);
     Board b1_1 = Board.boardForTest(1, 1);
-    NormalZone nz00 = new NormalZone(0, 0);
+    NormalZone nz00 = new NormalZone(b4_4, 0, 0);
 
     @Before
     public void setUp() throws Exception {

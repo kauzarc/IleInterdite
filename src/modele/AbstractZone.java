@@ -14,6 +14,7 @@ public abstract class AbstractZone extends Observable {
         this.x = x;
         this.y = y;
         this.board = board;
+        this.waterState = WaterState.normal;
     }
 
     public int getX() {

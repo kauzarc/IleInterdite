@@ -6,7 +6,6 @@ import view.NormalTile;
 public class NormalZone extends AbstractZone {
     public NormalZone(Board board, int x, int y) {
         super(board, x, y);
-        this.waterState = WaterState.normal;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class Board extends Observable {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.zones = new ArrayList<>(sizeX);
-        fillBoard();
+        fillBoardWithSpecials();
     }
 
     static Board boardForTest(int sizeX, int sizeY) {
@@ -90,12 +90,14 @@ public class Board extends Observable {
         for (int i =0; i < this.sizeX * this.sizeY; i+=1){
             notFilledZoneIndexes.add(Integer.valueOf(i));//À cause des surchages de .remove
         }
+
         System.out.println(notFilledZoneIndexes.size());
+
         for (int artifactNumber = 0; artifactNumber < 4; artifactNumber += 1){
             int randomIndex = ThreadLocalRandom.current().nextInt(0, notFilledZoneIndexes.size());
             int xy = notFilledZoneIndexes.get(randomIndex);
-            int x = xy/this.sizeX;
-            int y = xy%this.sizeX;
+            int x = xy / this.sizeX;
+            int y = xy % this.sizeX;
             this.setAt(x,y, new ArtifactZone(this, x,y,Artifact.values()[artifactNumber]));
             notFilledZoneIndexes.remove(Integer.valueOf(xy));
         }
@@ -108,12 +110,10 @@ public class Board extends Observable {
         notFilledZoneIndexes.remove(Integer.valueOf(xy));
 
         for (Integer foldedXy : notFilledZoneIndexes){
-            int xN = foldedXy/this.sizeX;
-            int yN = foldedXy%this.sizeX;
-            this.setAt(x, y, new NormalZone(this, xN,yN));
+            int xN = foldedXy / this.sizeX;
+            int yN = foldedXy % this.sizeX;
+            this.setAt(xN, yN, new NormalZone(this, xN,yN));
         }
-
-
     }
 
     /**

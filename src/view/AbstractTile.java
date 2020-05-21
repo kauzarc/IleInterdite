@@ -9,7 +9,7 @@ import observerObservable.Observer;
 public abstract class AbstractTile extends Group implements Observer {
 
     private final AbstractZone zone;
-    private final Rectangle background;
+    protected final Rectangle background;
 
     final static Color NORMAL = Color.BROWN;
     final static Color FLOODED = Color.BLUE;
@@ -19,7 +19,6 @@ public abstract class AbstractTile extends Group implements Observer {
         this.background = new Rectangle(SCALE * actualZone.getX() + 1, SCALE * actualZone.getY() + 1, SCALE - 2, SCALE - 2);
         getChildren().add(this.background);
         this.zone = actualZone;
-        update();
     }
 
     public void update() {

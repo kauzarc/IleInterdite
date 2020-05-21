@@ -1,20 +1,23 @@
 package view;
 
+import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import modele.AbstractZone;
 import observerObservable.Observer;
 
-public abstract class AbstractTile extends Rectangle implements Observer {
+public abstract class AbstractTile extends Group implements Observer {
 
     private final AbstractZone zone;
+    private final Rectangle background;
 
     final static Color NORMAL = Color.BROWN;
     final static Color FLOODED = Color.BLUE;
     final static Color SUBMERGED = Color.DARKBLUE;
 
     public AbstractTile(AbstractZone actualZone, int SCALE) {
-        super(SCALE * actualZone.getX() + 1, SCALE * actualZone.getY() + 1, SCALE - 2, SCALE - 2);
+        this.background = new Rectangle(SCALE * actualZone.getX() + 1, SCALE * actualZone.getY() + 1, SCALE - 2, SCALE - 2);
+        getChildren().add(this.background);
         this.zone = actualZone;
         update();
     }
@@ -22,13 +25,13 @@ public abstract class AbstractTile extends Rectangle implements Observer {
     public void update() {
         switch (this.zone.getWaterState()) {
             case normal:
-                this.setFill(NORMAL);
+                this.background.setFill(NORMAL);
                 break;
             case flooded:
-                this.setFill(FLOODED);
+                this.background.setFill(FLOODED);
                 break;
             case submerged:
-                this.setFill(SUBMERGED);
+                this.background.setFill(SUBMERGED);
                 break;
         }
     }

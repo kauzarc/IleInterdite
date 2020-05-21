@@ -45,7 +45,7 @@ public class Player extends Character {
         return actualPOS.loot();
     }
 
-    public void dry(AbstractZone zone){
+    public void dry(AbstractZone zone) {
         zone.dryWater();
         notifyObservers();
     }

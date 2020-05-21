@@ -6,7 +6,6 @@ import javafx.scene.paint.Color;
 import modele.AbstractZone;
 import modele.Board;
 import modele.Character;
-import modele.NormalZone;
 import observerObservable.Observer;
 
 

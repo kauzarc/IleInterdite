@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 import modele.ArtifactZone;
 
 public class ArtifactTile extends AbstractTile {
-    static final Color FIRE = Color.RED, WATER = Color.DARKBLUE, EARTH = Color.BROWN, WIND = Color.WHITE;
+    static final Color FIRE = Color.RED, WATER = Color.DARKBLUE, EARTH = Color.MAROON, WIND = Color.WHITE;
 
     private final Rectangle artifact;
 

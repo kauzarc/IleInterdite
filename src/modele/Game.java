@@ -65,7 +65,7 @@ public class Game {
     public void nextPlayer() {
         this.actionCount = 0;
         this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.size();
-        for (Player player : this.players){
+        for (Player player : this.players) {
             player.notifyObservers();
         }
     }

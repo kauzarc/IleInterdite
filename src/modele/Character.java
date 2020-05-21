@@ -54,7 +54,7 @@ public abstract class Character extends Observable {
         return this.map.getAt(this.x, this.y);
     }
 
-    public Board getBoard(){
+    public Board getBoard() {
         return this.map;
     }
 }

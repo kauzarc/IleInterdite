@@ -1,17 +1,12 @@
 package view;
 
 import javafx.scene.Group;
-import javafx.scene.SubScene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Translate;
 import modele.Character;
 import observerObservable.Observer;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class CharacterGraphics extends Group implements Observer {

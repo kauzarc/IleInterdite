@@ -87,7 +87,7 @@ public abstract class AbstractPlayer extends Observable {
     }
 
     public boolean zoneReachable(AbstractZone az) {
-        if (az instanceof NormalZone && this.isZoneAdjacent(az)) {
+        if (this.isZoneAdjacent(az)) {
             return az.getWaterState() != WaterState.submerged;
         }
         return false;

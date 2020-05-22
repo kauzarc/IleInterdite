@@ -21,7 +21,9 @@ public class TileClickedHandler implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         AbstractZone zone = tile.getZone();
-        System.out.println("x :" + zone.getX() + "y : " + zone.getY() + ", player x : " + this.game.getCurrentPlayer().getX() + "y : " + this.game.getCurrentPlayer().getY());
+        System.out.println("x :" + zone.getX() + ", y : " + zone.getY() +
+                ", player x : " + this.game.getCurrentPlayer().getX() + ", y : " + this.game.getCurrentPlayer().getY() +
+                ", actionCount : " + this.game.getActionCount());
 
         if (this.game.getActionCount() < 3) {
             switch (this.game.getActionMode()) {

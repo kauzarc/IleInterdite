@@ -1,5 +1,6 @@
 package view;
 
+import controller.ArtifactClickedHandler;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import modele.Artifact;
@@ -12,8 +13,13 @@ public class ArtifactTile extends AbstractTile {
 
     public ArtifactTile(ArtifactZone actualZone, int SCALE) {
         super(actualZone, SCALE);
-        this.artifact = new Rectangle(SCALE * actualZone.getX() + 10, SCALE * actualZone.getY() + 10, SCALE - 20, SCALE - 20);
-        this.getChildren().add(this.artifact);
+        if (actualZone.getArtifact() != null) {
+            this.artifact = new Rectangle(SCALE * actualZone.getX() + 10, SCALE * actualZone.getY() + 10, SCALE - 20, SCALE - 20);
+            this.artifact.setOnMouseClicked(new ArtifactClickedHandler(this));
+            this.getChildren().add(this.artifact);
+        } else {
+            this.artifact = null;
+        }
         update();
     }
 
@@ -38,8 +44,6 @@ public class ArtifactTile extends AbstractTile {
                     this.artifact.setFill(WIND);
                     break;
             }
-        } else {
-            this.artifact.setFill(this.background.getFill());
         }
     }
 }

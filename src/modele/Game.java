@@ -12,7 +12,7 @@ public class Game {
     }
 
     private final Board board;
-    private final List<Player> players;
+    private final List<AbstractPlayer> players;
     private ViewDirector viewDirector;
 
     private int currentPlayerIndex;
@@ -43,18 +43,18 @@ public class Game {
 
     private void addPlayer() {
         int i = this.players.size() + 1;
-        this.players.add(new Player(i, i, this.board));
+        this.players.add(new BasicPlayer(i, i, this.board));
     }
 
     public Board getBoard() {
         return this.board;
     }
 
-    public List<Player> getPlayers() {
+    public List<AbstractPlayer> getPlayers() {
         return this.players;
     }
 
-    public Player getCurrentPlayer() {
+    public AbstractPlayer getCurrentPlayer() {
         return this.players.get(currentPlayerIndex);
     }
 
@@ -65,7 +65,7 @@ public class Game {
     public void nextPlayer() {
         this.actionCount = 0;
         this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.size();
-        for (Player player : this.players) {
+        for (AbstractPlayer player : this.players) {
             player.notifyObservers();
         }
     }

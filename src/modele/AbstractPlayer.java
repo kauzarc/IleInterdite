@@ -2,13 +2,14 @@ package modele;
 
 import exception.ZoneUnreachableException;
 import observerObservable.Observable;
+import view.AbstractPlayerGraphics;
 
-public class Player extends Observable {
+public abstract class AbstractPlayer extends Observable {
     protected int x;
     protected int y;
     protected Board map;
 
-    public Player(int x, int y, Board map) {
+    public AbstractPlayer(int x, int y, Board map) {
         super();
         System.out.println("[" + x + "," + y + "]");
         this.x = x;
@@ -102,4 +103,5 @@ public class Player extends Observable {
         notifyObservers();
     }
 
+    public abstract AbstractPlayerGraphics createGraphics(int scale);
 }

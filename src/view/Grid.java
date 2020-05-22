@@ -3,9 +3,9 @@ package view;
 import controller.TileClickedHandler;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import modele.AbstractPlayer;
 import modele.AbstractZone;
 import modele.Board;
-import modele.Player;
 import observerObservable.Observer;
 
 
@@ -37,8 +37,8 @@ public class Grid extends Pane implements Observer {
     }
 
     public void setUpPlayer() {
-        for (Player p : this.board.getGame().getPlayers()) {
-            CharacterGraphics cg = new CharacterGraphics(p, SCALE);
+        for (AbstractPlayer p : this.board.getGame().getPlayers()) {
+            AbstractPlayerGraphics cg = p.createGraphics(SCALE);
             this.getChildren().add(cg);
         }
     }

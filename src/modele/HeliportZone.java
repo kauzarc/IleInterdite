@@ -14,8 +14,8 @@ public class HeliportZone extends AbstractZone {
 
     public int howManyPlayersThere() {
         int howMany = 0;
-        ArrayList<Player> playersList = (ArrayList<Player>) this.board.getGame().getPlayers();
-        for (Player p : playersList) {
+        ArrayList<AbstractPlayer> playersList = (ArrayList<AbstractPlayer>) this.board.getGame().getPlayers();
+        for (AbstractPlayer p : playersList) {
             if (p.getX() == this.x && p.getY() == this.y) {
                 howMany++;
             }

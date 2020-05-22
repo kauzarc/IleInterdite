@@ -16,14 +16,14 @@ public class GameTest extends TestCase {
 
     @Test
     public void testNextPlayer() throws Exception {
-        Player p = game5_5_1.getCurrentPlayer();
+        AbstractPlayer p = game5_5_1.getCurrentPlayer();
         game5_5_1.nextPlayer();
         assertEquals(p, game5_5_1.getCurrentPlayer());
     }
 
     @Test
     public void testNextPlayer2() throws Exception {
-        Player p = game5_5_2.getCurrentPlayer();
+        AbstractPlayer p = game5_5_2.getCurrentPlayer();
         game5_5_2.nextPlayer();
         assertNotSame(p, game5_5_2.getCurrentPlayer());
         game5_5_2.nextPlayer();

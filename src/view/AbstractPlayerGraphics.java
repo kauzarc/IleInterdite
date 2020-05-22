@@ -4,13 +4,13 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Translate;
-import modele.Player;
+import modele.AbstractPlayer;
 import observerObservable.Observer;
 
 import java.util.ArrayList;
 
-public class CharacterGraphics extends Group implements Observer {
-    private final Player character;
+public abstract class AbstractPlayerGraphics extends Group implements Observer {
+    private final AbstractPlayer character;
     private final int scale;
     private int previousX;
     private int previousY;
@@ -18,7 +18,7 @@ public class CharacterGraphics extends Group implements Observer {
     private Rectangle boundRectangle;
     private ArrayList<Rectangle> actionRectangles;
 
-    public CharacterGraphics(Player concernedCharacter, int SCALE) {
+    public AbstractPlayerGraphics(AbstractPlayer concernedCharacter, int SCALE) {
         super();
         this.scale = SCALE;
         this.setTranslateX(this.scale * concernedCharacter.getX());

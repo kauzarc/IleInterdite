@@ -4,18 +4,18 @@ import exception.ZoneUnreachableException;
 import observerObservable.Observable;
 import view.AbstractPlayerGraphics;
 
-public abstract class AbstractPlayer extends Observable {
+public abstract class AbstractPlayer extends Observable implements Container {
     protected int x;
     protected int y;
     protected Board map;
-    protected PlayerInventory inventory;
+    protected Inventory inventory;
 
     public AbstractPlayer(int x, int y, Board map) {
         System.out.println("[" + x + "," + y + "]");
         this.x = x;
         this.y = y;
         this.map = map;
-        this.inventory = new PlayerInventory(this);
+        this.inventory = new Inventory(this, 5);
     }
 
     public void walk(Direction D) {
@@ -105,4 +105,9 @@ public abstract class AbstractPlayer extends Observable {
     }
 
     public abstract AbstractPlayerGraphics createGraphics(int scale);
+
+    @Override
+    public Inventory getInventory() {
+        return this.inventory;
+    }
 }

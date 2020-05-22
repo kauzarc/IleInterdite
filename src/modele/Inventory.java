@@ -16,7 +16,7 @@ public class Inventory extends Observable {
         this.container = container;
     }
 
-    private boolean addItem(AbstractItem item) {
+    public boolean addItem(AbstractItem item) {
         if (this.itemList.size() < this.maxItem) {
             this.itemList.add(item);
             notifyObservers();
@@ -34,7 +34,9 @@ public class Inventory extends Observable {
     }
 
     public AbstractItem get(int index) {
-        return this.itemList.get(index);
+        if (index >= 0 && index < this.itemList.size())
+            return this.itemList.get(index);
+        return null;
     }
 
     public boolean moveItemTo(int index, Inventory other) {
@@ -42,5 +44,9 @@ public class Inventory extends Observable {
             return remove(index);
         }
         return false;
+    }
+
+    public int getCount() {
+        return this.itemList.size();
     }
 }

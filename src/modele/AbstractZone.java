@@ -72,9 +72,9 @@ public abstract class AbstractZone extends Observable {
         notifyObservers();
     }
 
-    public Artifact loot() {
+    public boolean loot(Inventory inventory) {
         System.out.println("ca fouille wolla");
-        return null;
+        return false;
     }
 
     public abstract AbstractTile createTile(int scale);

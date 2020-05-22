@@ -6,7 +6,7 @@ import view.ViewDirector;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game implements Container {
     public enum PlayerActionMode {
         moving, drying
     }
@@ -19,6 +19,8 @@ public class Game {
     private int actionCount;
     private PlayerActionMode actionMode;
 
+    private final Inventory inventory;
+
     private Game(int sizeX, int sizeY, int nbPlayer) {
         this.board = new Board(this, sizeX, sizeY);
         this.players = new ArrayList<>();
@@ -30,6 +32,11 @@ public class Game {
         this.currentPlayerIndex = 0;
         this.actionCount = 0;
         this.actionMode = PlayerActionMode.moving;
+
+        this.inventory = new Inventory(this, AbstractItem.Element.values().length);
+        for (AbstractItem.Element e : AbstractItem.Element.values()) {
+            this.inventory.addItem(new Key(e));
+        }
     }
 
     public Game(Stage stage, int sizeX, int sizeY, int nbPlayer) {
@@ -87,5 +94,10 @@ public class Game {
 
     public PlayerActionMode getActionMode() {
         return actionMode;
+    }
+
+    @Override
+    public Inventory getInventory() {
+        return inventory;
     }
 }

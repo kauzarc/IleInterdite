@@ -93,10 +93,9 @@ public abstract class AbstractPlayer extends Observable implements Container {
         return false;
     }
 
-    //fonction a modifié plus tard surment avec l'ajout de l'inventaire
-    public Artifact lootTheZone() {
+    public boolean lootTheZone() {
         AbstractZone actualPOS = this.map.getAt(this.x, this.y);
-        return actualPOS.loot();
+        return actualPOS.loot(this.inventory);
     }
 
     public void dry(AbstractZone zone) {

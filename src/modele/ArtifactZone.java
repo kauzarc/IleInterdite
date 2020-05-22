@@ -3,29 +3,30 @@ package modele;
 import view.AbstractTile;
 import view.ArtifactTile;
 
-public class ArtifactZone extends AbstractZone {
-    private Artifact artifact;
+public class ArtifactZone extends AbstractZone implements Container {
+    private final Inventory inventory;
 
     protected ArtifactZone(Board board, int x, int y) {
         super(board, x, y);
-        this.artifact = artifact;
+        this.inventory = new Inventory(this, 1);
     }
 
     public Artifact getArtifact() {
-        return this.artifact;
+        return (Artifact) this.inventory.get(0);
     }
 
 
     public boolean isThereArtifact() {
-        return this.artifact != null;
+        return this.inventory.getCount() != 0;
     }
 
     @Override
-    public Artifact loot() {
-        System.out.println("la vie y a un truc");
-        Artifact treasure = this.artifact;
-        this.artifact = null;
-        return treasure;
+    public boolean loot(Inventory inventory) {
+        if (this.inventory.moveItemTo(0, inventory)) {
+            notifyObservers();
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -33,7 +34,12 @@ public class ArtifactZone extends AbstractZone {
         return new ArtifactTile(this, scale);
     }
 
-    public void setArtifact(Artifact artifact) {
-        this.artifact = artifact;
+    public boolean setArtifact(Artifact artifact) {
+        return this.inventory.addItem(artifact);
+    }
+
+    @Override
+    public Inventory getInventory() {
+        return this.inventory;
     }
 }

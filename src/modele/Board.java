@@ -111,8 +111,7 @@ public class Board extends Observable {
                 AbstractZone currentZone = this.zones.get(x).get(y);
                 if (cantReceiveItem.contains(currentZone)) {
 
-                }
-                {
+                } else {
                     ArtifactZone artifactZone = (ArtifactZone) currentZone;
                     artifactZone.setArtifact(new Artifact(e));
                     elementPlaced = true;

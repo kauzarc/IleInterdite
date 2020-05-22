@@ -8,13 +8,14 @@ public abstract class AbstractPlayer extends Observable {
     protected int x;
     protected int y;
     protected Board map;
+    protected PlayerInventory inventory;
 
     public AbstractPlayer(int x, int y, Board map) {
-        super();
         System.out.println("[" + x + "," + y + "]");
         this.x = x;
         this.y = y;
         this.map = map;
+        this.inventory = new PlayerInventory(this);
     }
 
     public void walk(Direction D) {

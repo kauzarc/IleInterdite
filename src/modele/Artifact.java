@@ -1,10 +1,7 @@
 package modele;
 
-public enum Artifact {
-    fireArtifact,
-    waterArtifact,
-    earthArtifact,
-    windArtifact,
-    nothing;
-
+public class Artifact extends AbstractItem {
+    public Artifact(Element element) {
+        super(element);
+    }
 }

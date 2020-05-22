@@ -11,7 +11,7 @@ public class Board extends Observable {
     private final int sizeX;
     private final int sizeY;
 
-    private final ArrayList<ArrayList<AbstractZone>> zones;
+    private ArrayList<ArrayList<AbstractZone>> zones;
 
     public Board(Game game, int sizeX, int sizeY) {
         this(sizeX, sizeY);
@@ -77,6 +77,7 @@ public class Board extends Observable {
 
 
     public void fillBoardWithSpecials() {
+        this.zones = new ArrayList<>();
         for (int x = 0; x < this.sizeX; x += 1) {
             ArrayList<AbstractZone> column = new ArrayList<>(sizeY);
             for (int y = 0; y < this.sizeY; y += 1) {
@@ -85,40 +86,43 @@ public class Board extends Observable {
             this.zones.add(column);
         }
 
+        ArrayList<AbstractZone> cantReceiveItem = new ArrayList<>();
 
-        ArrayList<Integer> notFilledZoneIndexes = new ArrayList<>(this.sizeX * this.sizeY);
+        int x = ThreadLocalRandom.current().nextInt(0, this.sizeX);
+        int y = ThreadLocalRandom.current().nextInt(0, this.sizeY);
+        HeliportZone heliportZone = new HeliportZone(this, x, y);
+        this.setAt(x, y, heliportZone);
+        cantReceiveItem.add(heliportZone);
 
-        for (int i = 0; i < this.sizeX * this.sizeY; i += 1) {
-            notFilledZoneIndexes.add(Integer.valueOf(i));//À cause des surchages de .remove
+        for (x = 0; x < this.sizeX; x++) {
+            for (y = 0; y < this.sizeY; y++) {
+                if (this.zones.get(x).get(y) == null) {
+                    this.setAt(x, y, new ArtifactZone(this, x, y));
+                }
+            }
         }
 
-        System.out.println(notFilledZoneIndexes.size());
+        boolean elementPlaced;
+        for (AbstractItem.Element e : AbstractItem.Element.values()) {
+            elementPlaced = false;
+            while (!elementPlaced) {
+                x = ThreadLocalRandom.current().nextInt(0, this.sizeX);
+                y = ThreadLocalRandom.current().nextInt(0, this.sizeY);
+                AbstractZone currentZone = this.zones.get(x).get(y);
+                if (cantReceiveItem.contains(currentZone)) {
 
-        for (int artifactNumber = 0; artifactNumber < 4; artifactNumber += 1) {
-            int randomIndex = ThreadLocalRandom.current().nextInt(0, notFilledZoneIndexes.size());
-            int xy = notFilledZoneIndexes.get(randomIndex);
-            int x = xy / this.sizeX;
-            int y = xy % this.sizeX;
-            this.setAt(x, y, new ArtifactZone(this, x, y, Artifact.values()[artifactNumber]));
-            notFilledZoneIndexes.remove(Integer.valueOf(xy));
-        }
-
-        int randomIndex = ThreadLocalRandom.current().nextInt(0, notFilledZoneIndexes.size());
-        int xy = notFilledZoneIndexes.get(randomIndex);
-        int x = xy / this.sizeX;
-        int y = xy % this.sizeX;
-        this.setAt(x, y, new HeliportZone(this, x, y));
-        notFilledZoneIndexes.remove(Integer.valueOf(xy));
-
-        for (Integer foldedXy : notFilledZoneIndexes) {
-            int xN = foldedXy / this.sizeX;
-            int yN = foldedXy % this.sizeX;
-            this.setAt(xN, yN, new NormalZone(this, xN, yN));
+                }
+                {
+                    ArtifactZone artifactZone = (ArtifactZone) currentZone;
+                    artifactZone.setArtifact(new Artifact(e));
+                    elementPlaced = true;
+                }
+            }
         }
     }
 
     /**
-     * permit to get the zone at the cooordinates X and Y
+     * permit to get the zone at the coordinates X and Y
      *
      * @param x int
      * @param y int
@@ -144,7 +148,7 @@ public class Board extends Observable {
     }
 
     /**
-     * fill a number equal of the number in parametter, of zone in the board
+     * fill a number equal of the number in parameter, of zone in the board
      *
      * @param number
      */

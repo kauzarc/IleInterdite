@@ -5,7 +5,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import modele.AbstractZone;
 import modele.Board;
-import modele.Character;
+import modele.Player;
 import observerObservable.Observer;
 
 
@@ -37,7 +37,7 @@ public class Grid extends Pane implements Observer {
     }
 
     public void setUpPlayer() {
-        for (Character p : this.board.getGame().getPlayers()) {
+        for (Player p : this.board.getGame().getPlayers()) {
             CharacterGraphics cg = new CharacterGraphics(p, SCALE);
             this.getChildren().add(cg);
         }

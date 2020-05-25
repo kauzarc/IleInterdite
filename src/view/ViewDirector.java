@@ -24,12 +24,12 @@ public class ViewDirector {
         //had button and its action
         Button endTurnButton = createButton("fin de tour", 220, 500);
         endTurnButton.setOnAction(new EndTurnHandler(game));
-        ActionButton dryModeButton = new ActionButton( 220, 500,Game.PlayerActionMode.drying);
+        ActionButton dryModeButton = new ActionButton( 320, 500,Game.PlayerActionMode.drying);
         dryModeButton.setOnMouseClicked(new ChangeModeHandler(game, dryModeButton, Game.PlayerActionMode.drying));
 
-        ActionButton walkModeButton = new ActionButton( 450, 500,Game.PlayerActionMode.moving);
+        ActionButton walkModeButton = new ActionButton( 380, 500,Game.PlayerActionMode.moving);
         walkModeButton.setOnMouseClicked(new ChangeModeHandler(game, walkModeButton, Game.PlayerActionMode.moving));
-        ActionButton lootModeButton = new ActionButton( 500, 500,Game.PlayerActionMode.looting);
+        ActionButton lootModeButton = new ActionButton( 440, 500,Game.PlayerActionMode.looting);
         lootModeButton.setOnMouseClicked(new ChangeModeHandler(game, lootModeButton, Game.PlayerActionMode.looting));
 
         //add node root and its children

@@ -24,5 +24,6 @@ public class ChangeModeHandler implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         this.game.setActionMode(toEnable);
+        button.updateActivation(game);
     }
 }

@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -40,17 +41,24 @@ public class ActionButton extends Group{
         this.buttonType = type;
 
         this.getChildren().add(backgroundRectangle);
+        Label shortcutLabel = new Label("A");
         switch (this.buttonType){
             case  moving:
                 imgView = new ImageView(walkImg);
+                shortcutLabel.setText("Z");
                 break;
             case drying:
                 imgView = new ImageView(dryImg);
+                shortcutLabel.setText("A");
                 break;
             case looting:
                 imgView = new ImageView(lootImg);
+                shortcutLabel.setText("E");
                 break;
         }
+        shortcutLabel.setPrefHeight(50.0);
+        shortcutLabel.setStyle("-fx-font: 45.0 arial;");
+        this.getChildren().add(shortcutLabel);
         imgView.setX(0.0);
         imgView.setY(0.0);
         imgView.setFitHeight(50);

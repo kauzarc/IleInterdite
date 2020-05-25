@@ -2,11 +2,14 @@ package view;
 
 import controller.ChangeModeHandler;
 import controller.EndTurnHandler;
+import controller.TileClickedHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import modele.Game;
+
+import javax.swing.*;
 
 public class ViewDirector {
     private final Stage mainWindow;
@@ -21,16 +24,22 @@ public class ViewDirector {
         //had button and its action
         Button endTurnButton = createButton("fin de tour", 220, 500);
         endTurnButton.setOnAction(new EndTurnHandler(game));
-        Button changeModeButton = createButton("switch on drying mode", 315, 500);
-        changeModeButton.setOnAction(new ChangeModeHandler(game, changeModeButton));
+        ActionButton dryModeButton = new ActionButton( 220, 500,Game.PlayerActionMode.drying);
+        dryModeButton.setOnMouseClicked(new ChangeModeHandler(game, dryModeButton, Game.PlayerActionMode.drying));
 
+        ActionButton walkModeButton = new ActionButton( 450, 500,Game.PlayerActionMode.moving);
+        walkModeButton.setOnMouseClicked(new ChangeModeHandler(game, walkModeButton, Game.PlayerActionMode.moving));
+        ActionButton lootModeButton = new ActionButton( 500, 500,Game.PlayerActionMode.looting);
+        lootModeButton.setOnMouseClicked(new ChangeModeHandler(game, lootModeButton, Game.PlayerActionMode.looting));
 
         //add node root and its children
         Pane root = new Pane();
         root.getChildren().add(this.grid);
         root.getChildren().add(endTurnButton);
-        root.getChildren().add(changeModeButton);
 
+        root.getChildren().add(walkModeButton);
+        root.getChildren().add(dryModeButton);
+        root.getChildren().add(lootModeButton);
 
         Scene scene = new Scene(root);
 

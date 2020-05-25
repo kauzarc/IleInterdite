@@ -16,7 +16,8 @@ public abstract class AbstractTile extends Group implements Observer {
     final static Color SUBMERGED = Color.DARKBLUE;
 
     public AbstractTile(AbstractZone actualZone, int SCALE) {
-        this.background = new Rectangle(SCALE * actualZone.getX() + 1, SCALE * actualZone.getY() + 1, SCALE - 2, SCALE - 2);
+        this.background = new Rectangle(SCALE * actualZone.getX() + 1,
+                SCALE * actualZone.getY() + 1, SCALE - 2, SCALE - 2);
         getChildren().add(this.background);
         this.zone = actualZone;
     }

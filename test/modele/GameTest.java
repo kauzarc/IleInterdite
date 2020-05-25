@@ -32,19 +32,9 @@ public class GameTest extends TestCase {
 
     @Test
     public void testSwitchActionMode() throws Exception {
-        Game.PlayerActionMode a = game5_5_1.getActionMode();
-        game5_5_1.switchActionMode();
-        assertNotSame(a, game5_5_1.getActionMode());
-        game5_5_1.switchActionMode();
-        assertEquals(a, game5_5_1.getActionMode());
     }
 
     @Test
     public void testSwitchActionMode2() throws Exception {
-        Game.PlayerActionMode a = game5_5_2.getActionMode();
-        game5_5_2.switchActionMode();
-        assertNotSame(a, game5_5_2.getActionMode());
-        game5_5_2.switchActionMode();
-        assertEquals(a, game5_5_2.getActionMode());
     }
 }

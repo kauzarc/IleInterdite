@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Game implements Container {
     public enum PlayerActionMode {
-        moving, drying
+        moving, drying, looting
     }
 
     private final Board board;
@@ -81,23 +81,16 @@ public class Game implements Container {
         return actionCount;
     }
 
-    public void switchActionMode() {
-        switch (this.actionMode) {
-            case moving:
-                this.actionMode = PlayerActionMode.drying;
-                break;
-            case drying:
-                this.actionMode = PlayerActionMode.moving;
-                break;
-        }
+    public void setActionMode(PlayerActionMode newActionMode) {
+        this.actionMode = newActionMode;
     }
 
     public PlayerActionMode getActionMode() {
-        return actionMode;
+        return this.actionMode;
     }
 
     @Override
     public Inventory getInventory() {
-        return inventory;
+        return this.inventory;
     }
 }

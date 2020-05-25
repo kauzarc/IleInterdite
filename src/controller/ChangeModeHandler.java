@@ -3,30 +3,26 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import modele.Game;
+import view.ActionButton;
 
 
-public class ChangeModeHandler implements EventHandler<ActionEvent> {
+public class ChangeModeHandler implements EventHandler<MouseEvent> {
 
     private final Game game;
-    private final Button button;
+    private final ActionButton button;
+    private final Game.PlayerActionMode toEnable;
 
-    public ChangeModeHandler(Game game, Button button) {
+    public ChangeModeHandler(Game game, ActionButton button, Game.PlayerActionMode toEnable) {
         this.game = game;
         this.button = button;
+        this.toEnable = toEnable;
     }
 
-    @Override
-    public void handle(ActionEvent actionEvent) {
-        switch (game.getActionMode()) {
-            case moving:
-                this.button.setText("switch on moving mode");
-                break;
 
-            case drying:
-                this.button.setText("switch on drying mode");
-                break;
-        }
-        this.game.switchActionMode();
+    @Override
+    public void handle(MouseEvent mouseEvent) {
+        this.game.setActionMode(toEnable);
     }
 }
